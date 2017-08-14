@@ -1,0 +1,27 @@
+---
+downloads: ~/.ansible-downloads/
+
+homebrew_installed_packages:
+  - git
+  - go
+  - hub
+  - node
+  - openssl
+  - pv
+  - ssh-copy-id
+  - wget
+
+homebrew_taps:
+  - homebrew/core
+  - caskroom/cask
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - docker
+  - google-chrome
+  - slack
+  - sublime-text
+  - vagrant
+  - virtualbox
+
+
