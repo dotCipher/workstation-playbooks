@@ -1,5 +1,5 @@
 ---
-downloads: ~/.ansible-downloads/
+downloads: /etc/ansible/downloads/
 
 homebrew_installed_packages:
   - git
