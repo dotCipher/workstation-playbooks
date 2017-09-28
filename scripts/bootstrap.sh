@@ -32,10 +32,6 @@ echo "${CYAN}Correcting brew directory permissions...${RESTORE}"
 sudo chown -R $(whoami) /usr/local/bin
 sudo chown -R $(whoami) /usr/local/share
 
-### Ensure Apples command line tools are installed
-echo "${CYAN}Ensuring xcode command line tools are installed...${RESTORE}"
-xcode-select --install
-
 ### Install or Update Homebrew
 which -s brew
 if [[ $? != 0 ]] ; then

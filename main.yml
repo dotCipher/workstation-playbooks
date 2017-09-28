@@ -1,6 +1,8 @@
 ---
 - hosts: all
   connection: local
+  become: true
+  become_user: "{{ lookup('env','USER') }}"
 
   vars_files:
     - default.config.yml
@@ -16,4 +18,4 @@
       tags: ['homebrew']
 
   tasks:
-    - include: tasks/ansible-setup.yml
+    - import_tasks: tasks/ansible-setup.yml

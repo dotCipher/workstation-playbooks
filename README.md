@@ -2,4 +2,17 @@
 
 > Inspired by [geerlingguy/mac-dev-playbook](https://github.com/geerlingguy/mac-dev-playbook) and [donnemartin/dev-setup](https://github.com/donnemartin/dev-setup).
 
-Clone this repo into whatever directory you want on your machine.  Then to setup your environment, run `./scripts/bootstrap.sh`.
+### Usage
+
+1.  Clone this repo into whatever directory you want on your machine.
+
+2.  Setup your environment:
+```bash
+./scripts/bootstrap.sh
+```
+
+3.  Run the playbook:
+```bash
+ansible-playbook -i inventory main.yml -K
+```
+
