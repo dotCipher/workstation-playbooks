@@ -16,6 +16,7 @@
   roles:
     - role: geerlingguy.homebrew
       tags: ['homebrew']
+    - role: bobbyrenwick.pip
 
   tasks:
     - import_tasks: tasks/ansible-setup.yml
