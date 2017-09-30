@@ -1,0 +1,11 @@
+---
+- hosts: all
+  connection: local
+  become: true
+  become_user: "{{ lookup('env','USER') }}"
+
+  vars_files:
+    - ../configs/dotfiles.yml
+
+  roles:
+    - role: geerlingguy.dotfiles

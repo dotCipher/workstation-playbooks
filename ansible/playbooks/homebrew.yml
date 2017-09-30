@@ -1,0 +1,12 @@
+---
+- hosts: all
+  connection: local
+  become: true
+  become_user: "{{ lookup('env','USER') }}"
+
+  vars_files:
+    - ../configs/homebrew.yml
+
+  roles:
+    - role: geerlingguy.homebrew
+      tags: ['homebrew']

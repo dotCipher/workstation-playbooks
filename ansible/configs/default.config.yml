@@ -1,33 +1,4 @@
 ---
-downloads: /etc/ansible/downloads/
-
-# Configure Homebrew
-homebrew_installed_packages:
-  - git
-  - go
-  - hub
-  - node
-  - openssl
-  - pv
-  - ssh-copy-id
-  - wget
-  # Install GNU core utilities (those that come with OS X are outdated).
-  # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
-  - coreutils
-
-#homebrew_taps:
-#  - homebrew/core
-#  - caskroom/cask
-
-#homebrew_cask_appdir: /Applications
-#homebrew_cask_apps:
-#  - docker
-#  - google-chrome
-#  - slack
-#  - sublime-text
-#  - vagrant
-#  - virtualbox
-
 # Configure pip
 # (https://galaxy.ansible.com/bobbyrenwick/pip/)
 

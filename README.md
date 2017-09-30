@@ -13,6 +13,6 @@
 
 3.  Run the playbook:
 ```bash
-ansible-playbook -i inventory main.yml -K
+ansible-playbook -i ansible/inventory ansible/playbooks/main.yml -K
 ```
 
