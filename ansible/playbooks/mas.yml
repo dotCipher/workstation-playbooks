@@ -5,7 +5,7 @@
   become_user: "{{ lookup('env','USER') }}"
 
   vars_files:
-    - ../configs/git-config.yml
+    - ../configs/mas.yml
 
-  tasks:
-    - include_tasks: ../tasks/git-config.yml
+  roles:
+    - role: geerlingguy.mas

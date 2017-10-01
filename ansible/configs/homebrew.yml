@@ -49,10 +49,21 @@ homebrew_upgrade_all_packages: yes
 #  - caskroom/cask
 
 ## Apps you would like to have installed via cask.
-##  Search for popular apps on http://caskroom.io/ to see if they're available for install via Cask.
+##  Search for popular apps on https://caskroom.github.io/search to see if they're available for install via Cask.
 ##  Cask will not be used if it is not included in the list of taps in the homebrew_taps variable.
-#homebrew_cask_apps:
-#  - firefox
+homebrew_cask_apps:
+  - google-chrome
+  - vagrant
+  - virtualbox
+  - slack
+  - sublime-text
+  - spotify
+  - spotify-notifications
+  - docker
+  - alfred
+  - iterm2
+  - java
+  - google-backup-and-sync
 
 ## Directory where applications installed via cask should be installed.
 #homebrew_cask_appdir: /Applications

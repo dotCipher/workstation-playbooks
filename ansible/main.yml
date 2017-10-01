@@ -5,12 +5,14 @@
   become_user: "{{ lookup('env','USER') }}"
 
   vars_files:
-    - ../configs/homebrew.yml
-    - ../configs/dotfiles.yml
-#    - ../configs/default.config.yml
+    - configs/homebrew.yml
+    - configs/mas.yml
+    - configs/dotfiles.yml
+    - configs/git-config.yml
+    - configs/pip.yml
 
   roles:
     - role: geerlingguy.homebrew
-      tags: ['homebrew']
+    - role: geerlingguy.mas
     - role: geerlingguy.dotfiles
-#    - role: bobbyrenwick.pip
+    - role: bobbyrenwick.pip
