@@ -1,19 +1,18 @@
 ---
-# Configure pip
-# (https://galaxy.ansible.com/bobbyrenwick/pip/)
+# PIP Configuration (https://galaxy.ansible.com/bobbyrenwick/pip/)
 
-##  Specifies where get-pip.py should be downloaded to
+## Specifies where get-pip.py should be downloaded to
 #pip_download_dest: /tmp
 
-##  Defaults to None, to install the latest version (If pip is installed, upgrades to the latest pip version available)
+## Defaults to None, to install the latest version (If pip is installed, upgrades to the latest pip version available)
 ##  Can be set to a specific version, e.g. "6.0.8" to force installation of that version.
 ##  Can be set explicitly to "LATEST" or "latest" to force upgrade to the latest available version (same behaviour as None).
 #pip_version: None
 
-##  Specifies what Python executable to use
+## Specifies what Python executable to use
 #python: python
 
-##  Specifies what pip executable to check and use
+## Specifies what pip executable to check and use
 #pip: pip
 
 ## Specifies a HTTP proxy, if you have to use it (e.g. behind firewall)
