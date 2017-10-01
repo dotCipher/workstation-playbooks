@@ -20,6 +20,8 @@ homebrew_installed_packages:
   # Install GNU core utilities (those that come with OS X are outdated).
   # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
   - coreutils
+  - dockutil
+  - fish
   - git
   - go
   - gradle
@@ -36,6 +38,7 @@ homebrew_installed_packages:
   - tree
   - watch
   - wget
+
 
 ## Packages you would like to make sure are uninstalled.
 #homebrew_uninstalled_packages: []
