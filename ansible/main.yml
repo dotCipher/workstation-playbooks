@@ -10,9 +10,13 @@
     - configs/dotfiles.yml
     - configs/git-config.yml
     - configs/pip.yml
+    - configs/dock.yml
 
   roles:
     - role: geerlingguy.homebrew
     - role: geerlingguy.mas
     - role: geerlingguy.dotfiles
     - role: bobbyrenwick.pip
+
+  tasks:
+    - tasks/dock.yml
