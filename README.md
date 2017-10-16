@@ -4,15 +4,45 @@
 
 ### Usage
 
-1.  Clone this repo into whatever directory you want on your machine.
-
-2.  Setup your environment:
+Clone this repo into whatever directory you want on your machine then setup your environment:
 ```bash
 ./scripts/bootstrap.sh
 ```
 
-3.  Run the playbook:
+Then provision everything with:
 ```bash
-ansible-playbook -i ansible/inventory ansible/playbooks/main.yml -K
+ansible-playbook -i ansible/inventory ansible/playbooks/main.yml --ask-sudo-pass
 ```
 
+Or you can provision each playbook individually, see below.
+
+### Playbooks
+#### Dock
+```bash
+ansible-playbook -i ansible/inventory ansible/playbooks/dock.yml
+```
+
+#### Dotfiles
+```bash
+ansible-playbook -i ansible/inventory ansible/playbooks/dotfiles.yml
+```
+
+#### Homebrew
+```bash
+ansible-playbook -i ansible/inventory ansible/playbooks/homebrew.yml
+```
+
+#### Mac Apple Store
+```bash
+ansible-playbook -i ansible/inventory ansible/playbooks/mas.yml
+```
+
+#### OSX-Defaults
+```bash
+ansible-playbook -i ansible/inventory ansible/playbooks/osx-defaults.yml --ask-sudo-pass
+```
+
+#### pip
+```bash
+ansible-playbook -i ansible/inventory ansible/playbooks/pip.yml
+```

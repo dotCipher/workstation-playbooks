@@ -11,12 +11,14 @@
     - configs/git-config.yml
     - configs/pip.yml
     - configs/dock.yml
+    - configs/osx-defaults.yml
 
   roles:
     - role: geerlingguy.homebrew
     - role: geerlingguy.mas
     - role: geerlingguy.dotfiles
     - role: bobbyrenwick.pip
+    - role: lafarer.osx-defaults
 
   tasks:
     - tasks/dock.yml
