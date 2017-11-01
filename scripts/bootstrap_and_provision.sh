@@ -3,7 +3,7 @@
 pushd .
 
 ## Clone repo locally
-git clone ~/.mac-dev-playbook
+git clone git@github.com:dotCipher/mac-dev-playbook.git ~/.mac-dev-playbook
 cd ~/.mac-dev-playbook
 
 ## Run bootstrap script from local clone
