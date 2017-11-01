@@ -2,7 +2,14 @@
 
 > Inspired by [geerlingguy/mac-dev-playbook](https://github.com/geerlingguy/mac-dev-playbook) and [donnemartin/dev-setup](https://github.com/donnemartin/dev-setup).
 
-### Usage
+### Usage (automatic)
+
+Run the full osx provisioning script via the command:
+```bash
+bash <(curl -s https://git.io/vF3nW)
+```
+
+### Usage (manual)
 
 Clone this repo into whatever directory you want on your machine then setup your environment:
 ```bash
