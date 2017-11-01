@@ -18,7 +18,7 @@ Clone this repo into whatever directory you want on your machine then setup your
 
 Then provision everything with:
 ```bash
-ansible-playbook -i ansible/inventory ansible/main.yml --ask-sudo-pass
+ansible-playbook -i ansible/inventory ansible/main.yml --ask-become-pass
 ```
 
 Or you can provision each playbook individually, see below.
