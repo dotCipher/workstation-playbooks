@@ -8,7 +8,6 @@
     - configs/homebrew.yml
     - configs/mas.yml
     - configs/dotfiles.yml
-    - configs/git-config.yml
     - configs/pip.yml
     - configs/dock.yml
     - configs/osx-defaults.yml
