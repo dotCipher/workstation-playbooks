@@ -20,4 +20,4 @@
     - role: lafarer.osx-defaults
 
   tasks:
-    - tasks/dock.yml
+    - include_tasks: tasks/dock.yml
