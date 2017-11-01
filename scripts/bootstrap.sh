@@ -52,7 +52,7 @@ fi
 ## Install Ansible dependencies
 echo "${CYAN}Installing Ansible requirements for mac-dev-playbook...${RESTORE}"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-REQUIREMENTS_FILE=$(readlink -f "${DIR}/../ansible/requirements.yml")
+REQUIREMENTS_FILE="${DIR}/../ansible/requirements.yml"
 if [ ! -f "${REQUIREMENTS_FILE}" ]; then
     echo "${RED}Unable to find requirements file: ${REQUIREMENTS_FILE}${RESTORE}"
 else
