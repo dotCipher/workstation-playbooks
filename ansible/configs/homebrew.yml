@@ -57,7 +57,9 @@ homebrew_upgrade_all_packages: yes
 homebrew_cask_apps:
   - google-chrome
   - vagrant
-  - virtualbox
+  # VirtualBox removed due to issue with automatic installation
+  # See:  https://github.com/caskroom/homebrew-cask/issues/39369
+#  - virtualbox
   - slack
   - sublime-text
   - spotify
