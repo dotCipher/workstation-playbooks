@@ -10,6 +10,6 @@ cd ~/.mac-dev-playbook
 ./scripts/bootstrap.sh
 
 ## Run ansible provision
-ansible-playbook -i ansible/inventory ansible/playbooks/main.yml --ask-sudo-pass
+ansible-playbook -i ansible/inventory ansible/main.yml --ask-sudo-pass
 
 popd
