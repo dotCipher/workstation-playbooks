@@ -1,0 +1,13 @@
+---
+- name: "Lookup fish shell path"
+  command: "which fish"
+  register: fish_shell_path
+- name: "Ensure shell line exists in /etc/shells"
+  lineinfile:
+    path: /etc/shells
+    state: present
+    line: "{{ fish_shell_path.stdout }}"
+- name: "Set fish shell for {{ ansible_user }}"
+  user:
+    name: "{{ ansible_user }}"
+    shell: "{{ fish_shell_path.stdout }}"

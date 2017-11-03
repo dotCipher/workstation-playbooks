@@ -1,12 +1,14 @@
-# OSX Dev Machine Ansible Playbook
+# OSX Dev Machine Playbook
 
 > Inspired by [geerlingguy/mac-dev-playbook](https://github.com/geerlingguy/mac-dev-playbook) and [donnemartin/dev-setup](https://github.com/donnemartin/dev-setup).
 
+This repo contains the Ansible playbooks to provision all aspects of my OSX development setup.
+
 ### Usage (automatic)
 
-Run the full osx provisioning script via the command:
+Bootstrap and provision via the command:
 ```bash
-bash <(curl -s https://git.io/vF3nW)
+bash <(curl -s -L https://git.io/vF3nW)
 ```
 
 ### Usage (manual)
@@ -21,35 +23,19 @@ Then provision everything with:
 ansible-playbook -i ansible/inventory ansible/main.yml --ask-become-pass
 ```
 
-Or you can provision each playbook individually, see below.
+Or you can provision each playbook individually, see **Playbooks** below.
 
 ### Playbooks
-#### Dock
+Playbooks are broken up to be ran independently of each other.  If you want to just provision a specific aspect of your OSX machine, to run any individual playbook use the combined command:
 ```bash
-ansible-playbook -i ansible/inventory ansible/playbooks/dock.yml
+ansible-playbook -i ansible/inventory <PLAYBOOK>
 ```
 
-#### Dotfiles
-```bash
-ansible-playbook -i ansible/inventory ansible/playbooks/dotfiles.yml
-```
+Currently the following playbooks can be used independently:
 
-#### Homebrew
-```bash
-ansible-playbook -i ansible/inventory ansible/playbooks/homebrew.yml
-```
-
-#### Mac Apple Store
-```bash
-ansible-playbook -i ansible/inventory ansible/playbooks/mas.yml
-```
-
-#### OSX-Defaults
-```bash
-ansible-playbook -i ansible/inventory ansible/playbooks/osx-defaults.yml --ask-sudo-pass
-```
-
-#### pip
-```bash
-ansible-playbook -i ansible/inventory ansible/playbooks/pip.yml
-```
+ - `ansible/playbooks/dock.yml`
+ - `ansible/playbooks/dotfiles.yml`
+ - `ansible/playbooks/homebrew.yml`
+ - `ansible/playbooks/mas.yml`
+ - `ansible/playbooks/osx-defaults.yml --ask-become-pass`
+ - `ansible/playbooks/pip.yml`

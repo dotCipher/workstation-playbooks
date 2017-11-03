@@ -21,3 +21,4 @@
 
   tasks:
     - include_tasks: tasks/dock.yml
+    - include_tasks: tasks/fish-shell.yml
