@@ -6,7 +6,8 @@
 
   vars_files:
     - configs/homebrew.yml
-    - configs/mas.yml
+    # TODO: Re-enable with issue is fixed: https://github.com/mas-cli/mas/issues/107
+#    - configs/mas.yml
     - configs/dotfiles.yml
     - configs/pip.yml
     - configs/dock.yml
@@ -14,7 +15,8 @@
 
   roles:
     - role: geerlingguy.homebrew
-    - role: geerlingguy.mas
+    # TODO: Re-enable with issue is fixed: https://github.com/mas-cli/mas/issues/107
+#    - role: geerlingguy.mas
     - role: geerlingguy.dotfiles
     - role: bobbyrenwick.pip
     - role: lafarer.osx-defaults
