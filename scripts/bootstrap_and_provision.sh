@@ -33,7 +33,8 @@ pre_install_brew
 install_brew
 install_ansible
 install_ansible_roles "${REPO_CLONE_LOCATION}/ansible/role_requirements.yml"
-init_ansible_vault_file "${ANSIBLE_VAULT_FILE}"
+# TODO: Re-enable when mas issue is fixed: https://github.com/mas-cli/mas/issues/107
+#init_ansible_vault_file "${ANSIBLE_VAULT_FILE}"
 
 # Run ansible provision using repo playbooks
 ansible-playbook -i "${REPO_CLONE_LOCATION}/ansible/inventory" "${REPO_CLONE_LOCATION}/ansible/main.yml" \
