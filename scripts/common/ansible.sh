@@ -30,9 +30,9 @@ init_ansible_vault_file() {
     read -s -p "Type ansible vault password and press [ENTER]: " ansible_vault_password
     echo ""
     if [ -f "$1" ]; then
-        echo "${ansible_vault_password}\n" > "$1"
+        echo "${ansible_vault_password}" > "$1"
     else
         rm -f "$1"
-        echo "${ansible_vault_password}\n" > "$1"
+        echo "${ansible_vault_password}" > "$1"
     fi
 }
