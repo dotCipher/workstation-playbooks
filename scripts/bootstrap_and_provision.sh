@@ -38,8 +38,8 @@ install_ansible_roles "${REPO_CLONE_LOCATION}/ansible/role_requirements.yml"
 
 # Run ansible provision using repo playbooks
 ansible-playbook -i "${REPO_CLONE_LOCATION}/ansible/inventory" "${REPO_CLONE_LOCATION}/ansible/main.yml" \
-    --ask-become-pass \
-    --vault-password-file "${ANSIBLE_VAULT_FILE}"
+    --ask-become-pass
+#    --vault-password-file "${ANSIBLE_VAULT_FILE}"
 
 # Print output for completion
 echo -e "${GREEN}All done!${RESTORE}"
