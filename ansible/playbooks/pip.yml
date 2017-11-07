@@ -4,8 +4,5 @@
   become: true
   become_user: "{{ lookup('env','USER') }}"
 
-  vars_files:
-    - ../configs/pip.yml
-
-  roles:
-    - role: bobbyrenwick.pip
+  tasks:
+    - include_tasks: ../tasks/pip.yml

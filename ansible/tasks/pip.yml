@@ -1,0 +1,4 @@
+---
+# Assumes python is installed on OSX
+- name: "Install pip"
+  command: "easy_install pip"

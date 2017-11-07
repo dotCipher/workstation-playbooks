@@ -9,7 +9,6 @@
     # TODO: Re-enable with issue is fixed: https://github.com/mas-cli/mas/issues/107
 #    - configs/mas.yml
     - configs/dotfiles.yml
-    - configs/pip.yml
     - configs/dock.yml
     - configs/osx-defaults.yml
 
@@ -18,9 +17,9 @@
     # TODO: Re-enable with issue is fixed: https://github.com/mas-cli/mas/issues/107
 #    - role: geerlingguy.mas
     - role: geerlingguy.dotfiles
-    - role: bobbyrenwick.pip
     - role: lafarer.osx-defaults
 
   tasks:
+    - include_tasks: tasks/pip.yml
     - include_tasks: tasks/dock.yml
     - include_tasks: tasks/fish-shell.yml
