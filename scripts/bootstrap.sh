@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# This script will initialize the local system for running any ansible playbooks within this repo
 
 # Get directory of this script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

@@ -25,9 +25,10 @@ install_ansible_roles() {
     fi
 }
 
-# $1 = ansible vault file location (ie. ~/.ansible_vault_pass)
+# $1 = ansible vault file location (ie. $HOME/.ansible_vault_pass)
 init_ansible_vault_file() {
     read -s -p "Type ansible vault password and press [ENTER]: " ansible_vault_password
+    echo ""
     if [ -f "$1" ]; then
         echo "${ansible_vault_password}\n" > "$1"
     else
