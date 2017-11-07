@@ -6,9 +6,13 @@ RESTORE=$(echo -en '\033[0m')
 
 pre_install_brew() {
     # Correct directory permissions
-    echo "${CYAN}Correcting brew directory permissions...${RESTORE}"
-    sudo chown -R $(whoami) /usr/local/bin
-    sudo chown -R $(whoami) /usr/local/share
+    DIRECTORIES_TO_CHOWN=("/usr/local/bin" "/usr/local/share")
+    for directory in "${DIRECTORIES_TO_CHOWN[@]}"; do
+        if [ -f "${directory}" ]; then
+            sudo chown -R $(whoami) "${directory}"
+            echo "${CYAN}Corrected directory permissions of: ${directory} ${RESTORE}"
+        fi
+    done
 }
 
 install_brew() {
