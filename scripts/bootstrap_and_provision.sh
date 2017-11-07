@@ -29,6 +29,7 @@ pre_install_brew
 install_brew
 install_ansible
 install_ansible_roles "${REPO_CLONE_LOCATION}/ansible/role_requirements.yml"
+init_ansible_vault_file "${ANSIBLE_VAULT_FILE}"
 
 # Run ansible provision
 ansible-playbook -i "${REPO_CLONE_LOCATION}/ansible/inventory" "${REPO_CLONE_LOCATION}/ansible/main.yml" \
