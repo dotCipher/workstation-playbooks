@@ -17,17 +17,22 @@
 - name: "Check for existing oh-my-fish install"
   stat:
     path: "{{ ansible_env.HOME }}/.local/share/omf"
-  register: oh_my_fish_install_dir
+  register: oh_my_fish_dir
 
 - name: "Setup oh-my-fish plugin management framework"
   block:
-    - name: "Download oh-my-fish"
+    - name: "Download oh-my-fish installer"
       get_url:
         url: https://get.oh-my.fish
-        dest: "{{ ansible_env.HOME }}/.oh-my-fish-installer.sh"
+        dest: "{{ ansible_env.HOME }}/.oh-my-fish-install.sh"
         owner: "{{ lookup('env','USER') }}"
+        checksum: sha256:92ca680df48640e744b361d376194c5f5f8d6b4f1ac775d22417a0d8a8108767
+        mode: u+rwx
     - name: "Install oh-my-fish"
-      command: "{{ ansible_env.HOME }}/.oh-my-fish-installer.sh --noninteractive --yes"
-      become_user: "{{ lookup('env','USER') }}"
-  when: oh_my_fish_install_dir.stat.exists == False
-
+      command: "{{ ansible_env.HOME }}/.oh-my-fish-install.sh --noninteractive --yes"
+    - name: "Clean up oh-my-fish installer"
+      file:
+        path: "{{ ansible_env.HOME }}/.oh-my-fish-install.sh"
+        state: absent
+  when: oh_my_fish_dir.stat.exists == False
+  become_user: "{{ lookup('env','USER') }}"
