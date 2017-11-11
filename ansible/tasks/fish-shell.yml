@@ -2,12 +2,32 @@
 - name: "Lookup fish shell path"
   command: "which fish"
   register: fish_shell_path
+
 - name: "Ensure shell line exists in /etc/shells"
   lineinfile:
     path: /etc/shells
     state: present
     line: "{{ fish_shell_path.stdout }}"
+
 - name: "Set fish shell for {{ lookup('env','USER') }}"
   user:
     name: "{{ ansible_user }}"
     shell: "{{ fish_shell_path.stdout }}"
+
+- name: "Check for existing oh-my-fish install"
+  stat:
+    path: "{{ ansible_env.HOME }}/.local/share/omf"
+  register: oh_my_fish_install_dir
+
+- name: "Setup oh-my-fish plugin management framework"
+  block:
+    - name: "Download oh-my-fish"
+      get_url:
+        url: https://get.oh-my.fish
+        dest: "{{ ansible_env.HOME }}/.oh-my-fish-installer.sh"
+        owner: "{{ lookup('env','USER') }}"
+    - name: "Install oh-my-fish"
+      command: "{{ ansible_env.HOME }}/.oh-my-fish-installer.sh --noninteractive --yes"
+      become_user: "{{ lookup('env','USER') }}"
+  when: oh_my_fish_install_dir.stat.exists == False
+
