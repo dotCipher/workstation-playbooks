@@ -5,4 +5,6 @@
   become_user: "{{ lookup('env','USER') }}"
 
   tasks:
+    # Become root user for editing through symlink on OSX (see https://stackoverflow.com/questions/33396807/ansible-lineinfile-give-an-error-with-etc-hosts)
     - include_tasks: ../tasks/fish-shell.yml
+      become_user: root

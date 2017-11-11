@@ -7,7 +7,7 @@
     path: /etc/shells
     state: present
     line: "{{ fish_shell_path.stdout }}"
-- name: "Set fish shell for {{ ansible_user }}"
+- name: "Set fish shell for {{ lookup('env','USER') }}"
   user:
     name: "{{ ansible_user }}"
     shell: "{{ fish_shell_path.stdout }}"
