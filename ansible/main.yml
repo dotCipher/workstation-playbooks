@@ -15,6 +15,7 @@
     - role: geerlingguy.homebrew
     # TODO: Re-enable with issue is fixed: https://github.com/mas-cli/mas/issues/107
 #    - role: geerlingguy.mas
+    # TODO: Re-enable when issue is fixed:
 #    - role: geerlingguy.dotfiles
 
   tasks:

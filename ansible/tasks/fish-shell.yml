@@ -36,3 +36,8 @@
         state: absent
   when: oh_my_fish_dir.stat.exists == False
   become_user: "{{ lookup('env','USER') }}"
+
+- name: "Install oh-my-fish plugins"
+  command: "{{ fish_shell_path.stdout }} -c \"omf install {{ item }}\""
+  with_items: "{{ oh_my_fish_plugins }}"
+  notify: "Update oh-my-fish"

@@ -1,0 +1,16 @@
+
+# List of plugins to install using oh-my-fish:
+# https://github.com/oh-my-fish/packages-main/tree/master/packages
+oh_my_fish_plugins:
+  # https://github.com/oh-my-fish/packages-main/blob/master/packages/autojump
+  - autojump
+  # https://github.com/oh-my-fish/packages-main/blob/master/packages/battery
+  - battery
+  # https://github.com/oh-my-fish/packages-main/blob/master/packages/hub
+  - hub
+  # https://github.com/oh-my-fish/packages-main/blob/master/packages/license
+  - license
+  # https://github.com/oh-my-fish/packages-main/blob/master/packages/brew
+  - brew
+  # https://github.com/oh-my-fish/packages-main/blob/master/packages/fonts
+  - fonts
