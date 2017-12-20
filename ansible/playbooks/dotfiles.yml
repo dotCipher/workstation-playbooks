@@ -7,5 +7,5 @@
   vars_files:
     - ../configs/dotfiles.yml
 
-  roles:
-    - role: geerlingguy.dotfiles
+  tasks:
+    - include_tasks: ../tasks/dotfiles.yml
