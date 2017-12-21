@@ -38,6 +38,9 @@ homebrew_installed_packages:
   - tree
   - watch
   - wget
+  # https://github.com/wting/autojump#usage
+  - autojump
+  - fontconfig
 
 
 ## Packages you would like to make sure are uninstalled.
