@@ -12,5 +12,3 @@ oh_my_fish_plugins:
   - license
   # https://github.com/oh-my-fish/packages-main/blob/master/packages/brew
   - brew
-  # https://github.com/oh-my-fish/packages-main/blob/master/packages/fonts
-  - fonts
