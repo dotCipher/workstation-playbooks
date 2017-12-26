@@ -41,7 +41,7 @@ homebrew_installed_packages:
   # https://github.com/wting/autojump#usage
   - autojump
   - fontconfig
-
+  - jq
 
 ## Packages you would like to make sure are uninstalled.
 #homebrew_uninstalled_packages: []

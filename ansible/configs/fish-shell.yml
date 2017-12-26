@@ -7,7 +7,7 @@ oh_my_fish_extensions:
   - autojump
   # https://github.com/oh-my-fish/packages-main/blob/master/packages/hub
   - hub
-  # https://github.com/oh-my-fish/packages-main/blob/master/packages/license
+  # https://github.com/oh-my-fish/packages-main/blob/master/packages/license (requires brew install jq)
   - license
   # https://github.com/oh-my-fish/packages-main/blob/master/packages/brew
   - brew
