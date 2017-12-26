@@ -5,8 +5,6 @@ oh_my_fish_extensions:
 # PLUGINS
   # https://github.com/oh-my-fish/packages-main/blob/master/packages/autojump
   - autojump
-  # https://github.com/oh-my-fish/packages-main/blob/master/packages/battery
-  - battery
   # https://github.com/oh-my-fish/packages-main/blob/master/packages/hub
   - hub
   # https://github.com/oh-my-fish/packages-main/blob/master/packages/license
