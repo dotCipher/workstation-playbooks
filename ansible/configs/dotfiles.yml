@@ -22,4 +22,6 @@ dotfiles_files:
   - .bashrc
   - .aliases
   - .env
+  # Fish shell
+  - .config/fish/config.fish
   - .config/fish/functions/gi.fish
