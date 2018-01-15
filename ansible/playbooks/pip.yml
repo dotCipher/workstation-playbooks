@@ -2,7 +2,6 @@
 - hosts: all
   connection: local
   become: true
-  become_user: "{{ lookup('env','USER') }}"
 
   tasks:
     - include_tasks: ../tasks/pip.yml
