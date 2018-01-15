@@ -1,5 +1,7 @@
 ---
 # Originally from https://github.com/geerlingguy/ansible-role-dotfiles/blob/master/tasks/main.yml
+#  but was removed since it cannot handle recursive dotfiles directories
+#  (https://github.com/geerlingguy/ansible-role-dotfiles/pull/15)
 - name: Ensure dotfiles repository is cloned locally.
   git:
     repo: "{{ dotfiles_repo }}"
