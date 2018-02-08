@@ -1,4 +1,13 @@
 ---
+## Keyboard
+# Set key repeat rate (Off: 300000, Slow: 120, Fast: 2)
+Keyboard_KeyRepeat: 2
+# Set delay until repeat, in milliseconds (Long: 120, Short: 15)
+Keyboard_InitialKeyRepeat: 15
+
+## Login
+Login_guestAccess: NO
+
 # OSX Defaults Configuration (https://galaxy.ansible.com/lafarer/osx-defaults/)
 
 ## AppStore
@@ -70,20 +79,6 @@ General_NSScrollAnimationEnabled: true           # Smooth scrolling (Disable on 
 ## iCloud
 ICloud_Enabled: true                            # Enable iCloud configuration
 ICloud_NSDocumentSaveNewDocumentsToCloud: false   # Save to iCloud by default
-
-## Keyboard
-Keyboard_Enabled: true                            # Enable Keyboard configuration
-Keyboard_KeyRepeat: 0                              # Set key repeat rate (Off: 300000, Slow: 120, Fast: 2)
-Keyboard_InitialKeyRepeat: 10                      # Set delay until repeat, in milliseconds (Long: 120, Short: 15)
-#Keyboard_fnState: false                            # Use F1, F2, etc. keys as standard function keys
-Keyboard_kDim: true                               # Adjust keyboard brightness in low light
-Keyboard_kDimTime: 30                               # Dim keyboard after idle time (in seconds, 0 is Never)
-Keyboard_AutomaticSpellingCorrectionEnabled: false # Correct spelling automatically
-Keyboard_AutomaticQuoteSubstitutionEnabled: false  # Use smart quotes
-Keyboard_AutomaticDashSubstitutionEnabled: false   # Use smart dashes
-Keyboard_AppleKeyboardUIMode: 3                    # Full Keyboard Access (1 : Text boxes and lists only, 3 : All controls)
-#Keyboard_PowerButtonSleepsSystem: false            # Prevent accidental Power button presses from sleeping system
-#Keyboard_PressAndHoldEnabled: false                # Disable press-and-hold for keys in favor of key repeat
 
 ## Language Region
 #LanguageRegion_Enabled: false                    # Enable Language and Region configuration
