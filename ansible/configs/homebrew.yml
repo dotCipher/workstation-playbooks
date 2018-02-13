@@ -72,6 +72,8 @@ homebrew_cask_apps:
   - iterm2
   - java
   - google-backup-and-sync
+  - flux
+  - transmission-remote-gui
 
 ## Directory where applications installed via cask should be installed.
 #homebrew_cask_appdir: /Applications

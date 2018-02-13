@@ -39,3 +39,4 @@ Currently the following playbooks can be used independently:
  - `ansible/playbooks/mas.yml --vault-password-file ~/.ansible_vault_pass`
  - `ansible/playbooks/fish-shell.yml --ask-become-pass`
  - `ansible/playbooks/pip.yml`
+ - `ansible/playbooks/osx-defaults.yml`

@@ -1,0 +1,22 @@
+---
+- name: "Keyboard - Set KeyRepeat to {{ Keyboard_KeyRepeat }}"
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: KeyRepeat
+    type: int
+    value: "{{ Keyboard_KeyRepeat }}"
+
+- name: "Keyboard - Set InitialKeyRepeat to {{ Keyboard_InitialKeyRepeat }}"
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: InitialKeyRepeat
+    type: int
+    value: "{{ Keyboard_InitialKeyRepeat }}"
+
+- name: "Login - Set com.apple.AppleFileServer:guestAccess to {{ Login_guestAccess }}"
+  osx_defaults:
+    domain: com.apple.AppleFileServer
+    key: guestAccess
+    type: bool
+    value: "{{ Login_guestAccess }}"
+

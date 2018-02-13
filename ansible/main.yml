@@ -5,6 +5,7 @@
   become_user: "{{ lookup('env','USER') }}"
 
   vars_files:
+    - configs/osx-defaults.yml
     - configs/homebrew.yml
     # TODO: Re-enable with issue is fixed: https://github.com/mas-cli/mas/issues/107
 #    - configs/mas.yml
@@ -17,6 +18,7 @@
 #    - role: geerlingguy.mas
 
   tasks:
+    - include_tasks: tasks/osx-defaults.yml
     - include_tasks: tasks/pip.yml
     - include_tasks: tasks/dock.yml
     - include_tasks: tasks/dotfiles.yml
