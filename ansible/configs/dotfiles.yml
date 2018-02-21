@@ -18,11 +18,12 @@ dotfiles_home: "~"
 
 ## Which files from the dotfiles repository should be linked to the dotfiles_home.
 dotfiles_files:
-  - .bash_profile
   - .bashrc
-  - .aliases
-  - .env
+  - .bash_profile
+  - .bash_aliases
+  - .bash_env
   # Fish shell
   - .config/fish/config.fish
   - .config/fish/functions/gi.fish
   - .config/fish/functions/get-cert.fish
+  - .config/fish/functions/git-prune.fish
