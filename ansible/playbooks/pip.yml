@@ -3,5 +3,8 @@
   connection: local
   become: true
 
+  vars_files:
+    - ../configs/pip.yml
+
   tasks:
     - include_tasks: ../tasks/pip.yml
