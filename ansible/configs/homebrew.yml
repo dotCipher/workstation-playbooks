@@ -51,8 +51,8 @@ homebrew_installed_packages:
 homebrew_upgrade_all_packages: yes
 
 ## Taps you would like to make sure Homebrew has tapped.
-#homebrew_taps:
-#  - caskroom/cask
+homebrew_taps:
+  - caskroom/cask
 
 ## Apps you would like to have installed via cask.
 ##  Search for popular apps on https://caskroom.github.io/search to see if they're available for install via Cask.
