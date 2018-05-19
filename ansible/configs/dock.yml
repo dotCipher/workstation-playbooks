@@ -18,6 +18,13 @@ dockitems_to_remove:
   - App Store
   - System Preferences
   - Calendar
+  - Google Chrome
+  - Microsoft Outlook
+  - Atom
+  - Quip
+  - Slack
+  - zoom.us
+  - Self Service
 
 ## Setup an ordered list of dock items to set with an ordered position (left to right, 1-indexed)
 #dockitems_to_persist:
