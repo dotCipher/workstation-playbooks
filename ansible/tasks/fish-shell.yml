@@ -26,7 +26,6 @@
         url: https://get.oh-my.fish
         dest: "{{ ansible_env.HOME }}/.oh-my-fish-install.sh"
         owner: "{{ lookup('env','USER') }}"
-        checksum: sha256:4dd63d6a974a61c100cbe145ae46eac69edce985f20b061f353cc399b36c7587
         mode: u+rwx
     - name: "Install oh-my-fish"
       command: "{{ ansible_env.HOME }}/.oh-my-fish-install.sh --noninteractive --yes"
