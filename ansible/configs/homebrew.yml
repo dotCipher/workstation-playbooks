@@ -38,6 +38,9 @@ homebrew_installed_packages:
   - tree
   - watch
   - wget
+  - awscli
+  - rsync
+  - htop
   # https://github.com/wting/autojump#usage
   - autojump
   - fontconfig
@@ -60,20 +63,28 @@ homebrew_taps:
 homebrew_cask_apps:
   - google-chrome
   - vagrant
-  # VirtualBox removed due to issue with automatic installation
-  # See:  https://github.com/caskroom/homebrew-cask/issues/39369
-#  - virtualbox
   - slack
   - sublime-text
   - spotify
   - spotify-notifications
   - docker
   - alfred
+  - discord
   - iterm2
   - java
+  - quip
+  - shortcat
+  - steam
+  - vlc
+  - plex-media-player
   - google-backup-and-sync
+  - atom
   - flux
+  - transmission
   - transmission-remote-gui
+  # VirtualBox removed due to issue with automatic installation
+  # See:  https://github.com/caskroom/homebrew-cask/issues/39369
+#  - virtualbox
 
 ## Directory where applications installed via cask should be installed.
 #homebrew_cask_appdir: /Applications
