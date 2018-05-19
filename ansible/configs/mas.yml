@@ -34,7 +34,6 @@ mas_password: !vault |
 mas_installed_apps:
   - { id: 937984704, name: "Amphetamine (3.0.2)" }
   - { id: 715768417, name: "Microsoft Remote Desktop (8.0.27325)" }
-  - { id: 449589707, name: "Dash (3.3.1)" }
 
 ## Whether to run mas upgrade, which will upgrade all installed Mac App Store apps.
 mas_upgrade_all_apps: yes
