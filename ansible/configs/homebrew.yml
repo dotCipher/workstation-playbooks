@@ -66,6 +66,7 @@ homebrew_cask_apps:
   - google-chrome
   - font-hack-nerd-font
   - vagrant
+  - spectacle
   - slack
   - sublime-text
   - spotify
