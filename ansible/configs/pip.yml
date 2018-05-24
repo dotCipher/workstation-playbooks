@@ -4,3 +4,5 @@
 pip_packages:
   # https://github.com/awslabs/aws-shell
   - aws-shell
+  # https://github.com/gandi/gandi.cli
+  - gandi.cli
