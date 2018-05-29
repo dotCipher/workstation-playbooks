@@ -45,6 +45,7 @@ homebrew_installed_packages:
   - autojump
   - fontconfig
   - jq
+  - gnupg
 
 ## Packages you would like to make sure are uninstalled.
 #homebrew_uninstalled_packages: []
