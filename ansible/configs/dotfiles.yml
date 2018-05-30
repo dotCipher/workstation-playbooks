@@ -10,7 +10,7 @@ dotfiles_repo: "https://github.com/dotCipher/dotfiles"
 dotfiles_repo_accept_hostkey: no
 
 ## The local path where the dotfiles_repo will be cloned.
-dotfiles_repo_local_destination: "~/Workspace/Repos/dotfiles"
+dotfiles_repo_local_destination: "~/Workspace/Repos/Personal/dotfiles"
 
 ## The home directory where dotfiles will be linked. Generally, the default should work, but in some circumstances,
 ##  or when running the role as sudo on behalf of another user, you may want to specify the full path.
