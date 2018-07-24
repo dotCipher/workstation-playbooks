@@ -25,7 +25,6 @@ dotfiles_files:
   - .bash_env
   # Vim
   - .vimrc
-  - .vim/ftplugin/fish.vim
   # Fish shell
   - .config/fish/config.fish
   - .config/fish/functions/gi.fish
