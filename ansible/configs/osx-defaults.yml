@@ -77,13 +77,13 @@ General_CloseWindowsWhenQuittingApp: true       # Close windows when quitting an
 General_NSScrollAnimationEnabled: true           # Smooth scrolling (Disable on older Macs)
 
 ## iCloud
-ICloud_Enabled: true                            # Enable iCloud configuration
+ICloud_Enabled: false                            # Enable iCloud configuration
 ICloud_NSDocumentSaveNewDocumentsToCloud: false   # Save to iCloud by default
 
 ## Language Region
 #LanguageRegion_Enabled: false                    # Enable Language and Region configuration
 #LanguageRegion_Languages: [ "en", "fr" ]         # Preferred languages (in order of preference e.g. [ "en", "fr" ])
-#LanguageRegion_Locale: "en_US@currency=USD"      # Locale and Currency (United States : en_US@currency=USD, Great Britian : en_GB@currency=EUR)
+LanguageRegion_Locale: "en_US@currency=USD"      # Locale and Currency (United States : en_US@currency=USD, Great Britian : en_GB@currency=EUR)
 #LanguageRegion_MeasurementUnits: "Inches"        # Measure Units (Inches, Centimeters)
 #LanguageRegion_Force24HourTime: "true"           # Force 12/24 hour time
 #LanguageRegion_MetricUnits: "false"              # Set Metric Units
