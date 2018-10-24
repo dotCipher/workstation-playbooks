@@ -31,3 +31,4 @@ dotfiles_files:
   - .config/fish/functions/get-cert.fish
   - .config/fish/functions/git-prune.fish
   - .config/fish/functions/git-prune-all.fish
+  - .config/fish/functions/gppr.fish
