@@ -47,6 +47,7 @@ homebrew_installed_packages:
   - fontconfig
   - jq
   - gnupg
+  - vault
 
 ## Packages you would like to make sure are uninstalled.
 #homebrew_uninstalled_packages: []
