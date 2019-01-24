@@ -32,3 +32,6 @@ dotfiles_files:
   - .config/fish/functions/git-prune.fish
   - .config/fish/functions/git-prune-all.fish
   - .config/fish/functions/gppr.fish
+  # GnuPG
+  - .gnupg/gpg-agent.conf
+
