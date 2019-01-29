@@ -47,6 +47,7 @@ homebrew_installed_packages:
   - jq
   - gnupg
   - vault
+  - kubernetes-helm
 
 ## Packages you would like to make sure are uninstalled.
 #homebrew_uninstalled_packages: []

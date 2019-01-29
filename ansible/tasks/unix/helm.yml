@@ -1,0 +1,10 @@
+---
+- name: Download the helm installer script
+  get_url:
+    url: "https://raw.githubusercontent.com/helm/helm/master/scripts/get"
+    dest: "/tmp/install_helm_latest.sh"
+    mode: "+x"
+  register: helm_install
+
+- name: Install latest version of helm
+  shell: "{{ helm_install.dest }}"
