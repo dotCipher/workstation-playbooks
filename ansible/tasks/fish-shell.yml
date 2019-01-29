@@ -13,6 +13,7 @@
   user:
     name: "{{ ansible_user }}"
     shell: "{{ fish_shell_path.stdout }}"
+  become_user: root
 
 - name: "Check for existing oh-my-fish install"
   stat:

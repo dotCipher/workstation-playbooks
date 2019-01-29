@@ -1,0 +1,18 @@
+---
+# Unix / WSL based packages
+#  These should generally be kept in sync with osx/homebrew.yml packages
+installed_packages:
+  - coreutils
+  - fish
+  - git
+  - gradle
+  - npm
+  - python
+  - python3
+  - tree
+  - wget
+  - awscli
+  - rsync
+  - jq
+  - gnupg
+  - direnv

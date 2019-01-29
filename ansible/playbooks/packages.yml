@@ -1,0 +1,15 @@
+---
+- hosts: all
+  connection: local
+  become: true
+  become_user: "{{ lookup('env', 'USER') }}"
+
+  vars_files:
+    - ../configs/packages.yml
+
+  handlers:
+    - import_tasks: ../handlers/packages.yml
+
+  tasks:
+    - include_tasks: ../tasks/packages.yml
+      become_user: root
