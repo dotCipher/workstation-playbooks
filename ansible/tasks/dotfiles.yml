@@ -5,7 +5,7 @@
 - name: Ensure dotfiles repository is cloned locally on OSX
   git:
     repo: "{{ dotfiles_repo }}"
-    dest: "{{ dotfiles_repo_local_destination }}"
+    dest: "{{ repos_home }}/Personal/dotfiles"
     accept_hostkey: "{{ dotfiles_repo_accept_hostkey }}"
   become: no
   when:
@@ -14,7 +14,7 @@
 - name: Ensure dotfiles repository is cloned locally on WSL
   git:
     repo: "{{ dotfiles_repo }}"
-    dest: "{{ dotfiles_wsl_repo_location }}"
+    dest: "{{ repos_wsl_home }}/Personal/dotfiles"
     accept_hostkey: "{{ dotfiles_repo_accept_hostkey }}"
   when:
     - ansible_system == "Linux"
@@ -45,7 +45,7 @@
 
 - name: Link dotfiles into home folder on OSX
   file:
-    src: "{{ dotfiles_repo_local_destination }}/{{ item }}"
+    src: "{{ repos_home }}/Personal/dotfiles/{{ item }}"
     dest: "{{ dotfiles_home }}/{{ item }}"
     state: link
   become: no
@@ -55,7 +55,7 @@
 
 - name: Link dotfiles into home folder on WSL
   file:
-    src: "{{ dotfiles_wsl_repo_location }}/{{ item }}"
+    src: "{{ repos_wsl_home }}/{{ item }}"
     dest: "{{ dotfiles_home }}/{{ item }}"
     state: link
   become: no

@@ -1,0 +1,6 @@
+---
+workspace_home: "~/Workspace"
+workspace_wsl_home: "/mnt/c/Users/{{ ansible_user_id }}/Workspace"
+
+repos_home: "{{ workspace_home }}/Repos"
+repos_wsl_home: "{{ workspace_wsl_home }}/Repos"

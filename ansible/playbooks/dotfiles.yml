@@ -5,6 +5,7 @@
   become_user: "{{ lookup('env','USER') }}"
 
   vars_files:
+    - ../configs/common.yml
     - ../configs/dotfiles.yml
 
   tasks:

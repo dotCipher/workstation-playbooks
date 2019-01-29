@@ -1,0 +1,33 @@
+---
+- name: Ensure autojump repository is cloned locally on OSX
+  git:
+    repo: "git://github.com/wting/autojump.git"
+    dest: "{{ repos_home }}/Personal/autojump"
+  become: no
+  when:
+    - ansible_distribution == "MacOSX"
+
+- name: Ensure autojump repository is cloned locally on WSL
+  git:
+    repo: "git://github.com/wting/autojump.git"
+    dest: "{{ repos_wsl_home }}/Personal/autojump"
+  become: no
+  when:
+    - ansible_system == "Linux"
+    - ansible_kernel.find("Microsoft") > 0
+
+- name: Install autojump on OSX
+  shell: "./install.py"
+  args:
+    chdir: "{{ repos_home }}/Personal/autojump"
+  when:
+    - ansible_distribution == "MacOSX"
+
+- name: Install autojump on WSL
+  shell: "./install.py"
+  args:
+    chdir: "{{ repos_wsl_home }}/Personal/autojump"
+  when:
+    - ansible_system == "Linux"
+    - ansible_kernel.find("Microsoft") > 0
+
