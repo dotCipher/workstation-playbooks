@@ -1,0 +1,19 @@
+---
+- name: Lookup latest version of nvm
+  uri:
+    url: "https://api.github.com/repos/creationix/nvm/releases/latest"
+    method: GET
+    return_content: yes
+    status_code: 200
+    body_format: json
+  register: response
+
+- name: Download latest version of nvm
+  get_url:
+    url: "https://raw.githubusercontent.com/creationix/nvm/{{ response.json.tag_name }}/install.sh"
+    dest: "/tmp/install_nvm_{{ response.json.tag_name }}.sh"
+    mode: "+x"
+  register: nvm_install
+
+- name: Install latest version of nvm
+  shell: "{{ nvm_install.dest }}"
