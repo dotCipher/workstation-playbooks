@@ -48,6 +48,7 @@ homebrew_installed_packages:
   - gnupg
   - vault
   - kubernetes-helm
+  - weaveworks/tap/eksctl
 
 ## Packages you would like to make sure are uninstalled.
 #homebrew_uninstalled_packages: []

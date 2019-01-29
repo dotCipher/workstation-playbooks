@@ -1,0 +1,7 @@
+---
+- name: Download and install eksctl
+  unarchive:
+    src: "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_{{ ansible_system }}_amd64.tar.gz"
+    dest: /usr/local/bin
+    remote_src: yes
+  become_user: root

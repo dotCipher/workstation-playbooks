@@ -12,11 +12,13 @@
     - import_tasks: ../handlers/packages.yml
 
   tasks:
-    - include_tasks: ../tasks/packages.yml
-      become_user: root
+#    - include_tasks: ../tasks/packages.yml
+#      become_user: root
 
     # Unique packages that aren't tracked via a mainstream package manager
-    - include_tasks: ../tasks/unix/autojump.yml
-    - include_tasks: ../tasks/unix/nvm.yml
-    - include_tasks: ../tasks/unix/jabba.yml
-    - include_tasks: ../tasks/unix/helm.yml
+#    - include_tasks: ../tasks/unix/package-autojump.yml
+#    - include_tasks: ../tasks/unix/package-nvm.yml
+#    - include_tasks: ../tasks/unix/package-jabba.yml
+#    - include_tasks: ../tasks/unix/package-helm.yml
+    - include_tasks: ../tasks/unix/package-eksctl.yml
+      become_user: root
