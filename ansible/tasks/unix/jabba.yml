@@ -1,0 +1,20 @@
+---
+- name: Download the jabba install script
+  get_url:
+    url: "https://github.com/shyiko/jabba/raw/master/install.sh"
+    dest: "/tmp/install_jabba_latest.sh"
+    mode: "+x"
+  register: jabba_install
+
+- name: Install jabba on OSX
+  shell: "{{ jabba_install.dest }}"
+  when:
+    - ansible_distribution == "MacOSX"
+
+- name: Install jabba to WSL_HOME (if on wsl)
+  shell: "{{ jabba_install.dest }}"
+  environment:
+    JABBA_HOME: "/mnt/c/Users/{{ ansible_user_id }}/.jabba"
+  when:
+    - ansible_system == "Linux"
+    - ansible_kernel.find("Microsoft") > 0
