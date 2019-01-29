@@ -5,7 +5,7 @@
   become_user: "{{ lookup('env','USER') }}"
 
   vars_files:
-    - ../configs/dock.yml
+    - ../../configs/osx/defaults.yml
 
   tasks:
-    - include_tasks: ../tasks/dock.yml
+    - include_tasks: ../../tasks/osx/defaults.yml

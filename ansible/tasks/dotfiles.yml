@@ -2,14 +2,25 @@
 # Originally from https://github.com/geerlingguy/ansible-role-dotfiles/blob/master/tasks/main.yml
 #  but was removed since it cannot handle recursive dotfiles directories
 #  (https://github.com/geerlingguy/ansible-role-dotfiles/pull/15)
-- name: Ensure dotfiles repository is cloned locally.
+- name: Ensure dotfiles repository is cloned locally on OSX
   git:
     repo: "{{ dotfiles_repo }}"
     dest: "{{ dotfiles_repo_local_destination }}"
     accept_hostkey: "{{ dotfiles_repo_accept_hostkey }}"
   become: no
+  when:
+    - ansible_distribution == "MacOSX"
 
-- name: Ensure all configured dotfiles are links.
+- name: Ensure dotfiles repository is cloned locally on WSL
+  git:
+    repo: "{{ dotfiles_repo }}"
+    dest: "{{ dotfiles_wsl_repo_location }}"
+    accept_hostkey: "{{ dotfiles_repo_accept_hostkey }}"
+  when:
+    - ansible_system == "Linux"
+    - ansible_kernel.find("Microsoft") > 0
+
+- name: Ensure all configured dotfiles are links
   shell: "ls -F {{ dotfiles_home }}/{{ item }}"
   register: existing_dotfile_info
   failed_when: false
@@ -17,14 +28,14 @@
   changed_when: false
   with_items: "{{ dotfiles_files }}"
 
-- name: Remove existing dotfiles file if a replacement is being linked.
+- name: Remove existing dotfiles file if a replacement is being linked
   file:
     path: "{{ dotfiles_home }}/{{ dotfiles_files[item.0] }}"
     state: absent
   when: "'@' not in item.1.stdout"
   with_indexed_items: "{{ existing_dotfile_info.results }}"
 
-- name: Ensure parent folders of link dotfiles exist.
+- name: Ensure parent folders of link dotfiles exist
   file:
     path: "{{ (dotfiles_home ~ '/' ~ item) | dirname }}"
     state: directory
@@ -32,10 +43,23 @@
   become: no
   with_items: "{{ dotfiles_files }}"
 
-- name: Link dotfiles into home folder.
+- name: Link dotfiles into home folder on OSX
   file:
     src: "{{ dotfiles_repo_local_destination }}/{{ item }}"
     dest: "{{ dotfiles_home }}/{{ item }}"
     state: link
   become: no
   with_items: "{{ dotfiles_files }}"
+  when:
+    - ansible_distribution == "MacOSX"
+
+- name: Link dotfiles into home folder on WSL
+  file:
+    src: "{{ dotfiles_wsl_repo_location }}/{{ item }}"
+    dest: "{{ dotfiles_home }}/{{ item }}"
+    state: link
+  become: no
+  with_items: "{{ dotfiles_files }}"
+  when:
+    - ansible_system == "Linux"
+    - ansible_kernel.find("Microsoft") > 0
