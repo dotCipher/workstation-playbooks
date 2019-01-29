@@ -1,5 +1,14 @@
 ---
 # Unix / WSL based packages
+
+#  APT GPG keys for remote repositories
+apt_gpg_keys:
+  - https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+#  APT remote repositories to track
+apt_repositories:
+  - "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+
 #  These should generally be kept in sync with osx/homebrew.yml packages
 installed_packages:
   - coreutils
@@ -16,3 +25,5 @@ installed_packages:
   - jq
   - gnupg
   - direnv
+  - apt-transport-https
+  - kubectl

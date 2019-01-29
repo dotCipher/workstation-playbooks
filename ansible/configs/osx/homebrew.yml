@@ -39,7 +39,7 @@ homebrew_installed_packages:
   - watch
   - wget
   - awscli
-    - rsync
+  - rsync
   - htop
   # https://github.com/wting/autojump#usage
   - autojump

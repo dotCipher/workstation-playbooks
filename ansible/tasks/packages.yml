@@ -1,8 +1,24 @@
 ---
+- name: Add APT GPG keys for remotes (if using apt)
+  apt_key:
+    url: "{{ item }}"
+  when:
+    - ansible_pkg_mgr == "apt"
+  with_items: "{{ apt_gpg_keys }}"
+  become_user: root
+
+- name: Add APT remote repositories (if using apt)
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items: "{{ apt_repositories }}"
+  when:
+    - ansible_pkg_mgr == "apt"
+  become_user: root
+
 - name: Install packages
   package:
     name: "{{ item }}"
     state: present
   with_items: "{{ installed_packages }}"
   become_user: root
-

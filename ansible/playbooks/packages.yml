@@ -14,9 +14,11 @@
   tasks:
     - include_tasks: ../tasks/packages.yml
       become_user: root
+#
+#    - include_tasks: ../tasks/unix/autojump.yml
+#
+#    - include_tasks: ../tasks/unix/nvm.yml
+#
+#    - include_tasks: ../tasks/unix/jabba.yml
 
-    - include_tasks: ../tasks/unix/autojump.yml
-
-    - include_tasks: ../tasks/unix/nvm.yml
-
-    - include_tasks: ../tasks/unix/jabba.yml
+#    - include_tasks: ../tasks/unix/kubectl.yml
