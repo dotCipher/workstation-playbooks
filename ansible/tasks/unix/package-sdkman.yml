@@ -1,0 +1,22 @@
+---
+- name: Install sdkman dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - zip
+  become_user: root
+
+- name: Download sdkman installer
+  get_url:
+    url: "https://get.sdkman.io/"
+    dest: "/tmp/install_sdkman_latest.sh"
+    mode: "+x"
+  register: sdkman_install
+
+- name: Install sdkman
+  shell: "{{ sdkman_install.dest }}"
+
+- name: Install sdkman packages
+  shell: "sdk install {{ item }}"
+  with_items: "{{ sdkman_packages }}"

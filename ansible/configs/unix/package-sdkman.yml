@@ -1,0 +1,7 @@
+---
+
+# https://sdkman.io/sdks
+sdkman_packages:
+  - gradle
+  - kotlin
+  - kscript

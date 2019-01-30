@@ -8,6 +8,7 @@
     - ../configs/common.yml
     - ../configs/packages.yml
     - ../configs/unix/package-aws-iam-authenticator.yml
+    - ../configs/unix/package-sdkman.yml
 
   handlers:
     - import_tasks: ../handlers/packages.yml
@@ -25,3 +26,4 @@
       become_user: root
     - include_tasks: ../tasks/unix/package-aws-iam-authenticator.yml
       become_user: root
+    - include_tasks: ../tasks/unix/package-sdkman.yml
