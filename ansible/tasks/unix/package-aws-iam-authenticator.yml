@@ -1,0 +1,18 @@
+---
+- name: Download and install aws-iam-authenticator binary for Linux
+  get_url:
+    url: "https://amazon-eks.s3-us-west-2.amazonaws.com/{{ aws_iam_authenticator_version }}/bin/linux/amd64/aws-iam-authenticator"
+    dest: /usr/local/bin/aws-iam-authenticator
+    mode: "+x"
+  when:
+    - ansible_system == "Linux"
+  become_user: root
+
+- name: Download and install aws-iam-authenticator binary for MacOS
+  get_url:
+    url: "https://amazon-eks.s3-us-west-2.amazonaws.com/{{ aws_iam_authenticator_version }}/bin/darwin/amd64/aws-iam-authenticator"
+    dest: /usr/local/bin/aws-iam-authenticator
+    mode: "+x"
+  when:
+    - ansible_distribution == "MacOSX"
+  become_user: root
