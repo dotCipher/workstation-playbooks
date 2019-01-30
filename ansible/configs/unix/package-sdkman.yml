@@ -1,7 +1,3 @@
 ---
 
-# https://sdkman.io/sdks
-sdkman_packages:
-  - gradle
-  - kotlin
-  - kscript
+sdkman_home: "{{ ansible_user_dir }}/.sdkman"

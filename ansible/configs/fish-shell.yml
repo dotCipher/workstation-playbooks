@@ -11,8 +11,6 @@ oh_my_fish_extensions:
   - license
   # https://github.com/derekstavis/plugin-nvm
   - nvm
-  # https://github.com/deather/omf-sdk
-  - sdk
 
 # THEMES
   # https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md#bobthefish-1

@@ -16,7 +16,31 @@
 
 - name: Install sdkman
   shell: "{{ sdkman_install.dest }}"
+  become_user: "{{ lookup('env','USER') }}"
 
-- name: Install sdkman packages
-  shell: "sdk install {{ item }}"
-  with_items: "{{ sdkman_packages }}"
+- name: "Lookup fish shell path"
+  command: "which fish"
+  register: fish_shell_path
+
+- name: "Check for existing oh-my-fish install"
+  stat:
+    path: "{{ ansible_env.HOME }}/.local/share/omf"
+  register: oh_my_fish_dir
+  when:
+    - fish_shell_path.stdout != ""
+
+- name: Install oh-my-fish sdk plugin (if using fish + omf)
+  raw: "{{ fish_shell_path.stdout }} -c \"omf install {{ item|quote }}\""
+  with_items:
+    - sdk
+  when:
+    - oh_my_fish_dir.stat.exists == True
+  become_user: "{{ lookup('env','USER') }}"
+
+- name: Symlink sdkman for shell compatibility
+  file:
+    src: "{{ sdkman_home }}/bin/sdkman-init.sh"
+    dest: "/bin/sdkman-init.sh"
+    state: link
+    owner: "{{ ansible_user_id }}"
+  become_user: root
