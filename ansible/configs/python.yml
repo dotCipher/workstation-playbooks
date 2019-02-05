@@ -6,3 +6,5 @@ pip_packages:
   - aws-shell
   # https://github.com/gandi/gandi.cli
   - gandi.cli
+  # https://docs.docker.com/compose/install/#install-using-pip
+  - docker-compose

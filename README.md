@@ -59,4 +59,4 @@ Currently the following playbooks can be used:
  - `ansible-playbook -i ansible/inventory ansible/playbooks/dotfiles.yml`
  - `ansible-playbook -i ansible/inventory ansible/playbooks/packages.yml`
  - `ansible-playbook -i ansible/inventory ansible/playbooks/fish-shell.yml --ask-become-pass`
- - `ansible-playbook -i ansible/inventory ansible/playbooks/pip.yml --ask-become-pass`
+ - `ansible-playbook -i ansible/inventory ansible/playbooks/python.yml`

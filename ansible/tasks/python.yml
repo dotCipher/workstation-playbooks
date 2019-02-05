@@ -1,0 +1,22 @@
+---
+- name: "Install pip on OSX"
+  command: "easy_install pip"
+  when:
+    - ansible_distribution == "MacOSX"
+
+- name: "Install pip on Linux"
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python-pip
+    - python3-pip
+
+- name: "Install all pip packages"
+  shell: "pip install {{ item }}"
+  failed_when: false
+  check_mode: no
+  changed_when: false
+  with_items: "{{ pip_packages }}"
+
+

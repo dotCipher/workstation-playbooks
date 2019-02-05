@@ -4,7 +4,7 @@
   become: true
 
   vars_files:
-    - ../configs/pip.yml
+    - ../configs/python.yml
 
   tasks:
-    - include_tasks: ../tasks/pip.yml
+    - include_tasks: ../tasks/python.yml
