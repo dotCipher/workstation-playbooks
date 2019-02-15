@@ -10,6 +10,7 @@
     - ../configs/unix/package-aws-iam-authenticator.yml
     - ../configs/unix/package-sdkman.yml
     - ../configs/unix/package-terraform.yml
+    - ../configs/unix/package-vault.yml
 
   handlers:
     - import_tasks: ../handlers/packages.yml
@@ -29,4 +30,6 @@
       become_user: root
     - include_tasks: ../tasks/unix/package-sdkman.yml
     - include_tasks: ../tasks/unix/package-terraform.yml
+      become_user: root
+    - include_tasks: ../tasks/unix/package-vault.yml
       become_user: root
