@@ -1,0 +1,18 @@
+---
+- name: "Download v{{ vault_version }} of vault on OSX"
+  unarchive:
+    src: "{{ vault_download_url_prefix }}/{{ vault_version }}/vault_{{ vault_version }}/darwin_amd64.zip"
+    dest: /usr/local/bin
+    remote_src: yes
+  become_user: root
+  when:
+    - ansible_distribution == "MacOSX"
+
+- name: "Download v{{ vault_version }} of terraform on Linux / WSL"
+  unarchive:
+    src: "{{ vault_download_url_prefix }}/{{ vault_version }}/vault_{{ vault_version }}_linux_amd64.zip"
+    dest: /usr/local/bin
+    remote_src: yes
+  become_user: root
+  when:
+    - ansible_system == "Linux"

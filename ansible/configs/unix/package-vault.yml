@@ -1,0 +1,6 @@
+---
+
+# https://www.vaultproject.io/downloads.html
+vault_version: "1.0.3"
+
+vault_download_url_prefix: "https://releases.hashicorp.com/vault"

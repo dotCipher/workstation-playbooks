@@ -1,7 +1,7 @@
 ---
-- name: "Download v{{ terraform_version}} of terraform on OSX"
+- name: "Download v{{ terraform_version }} of terraform on OSX"
   unarchive:
-    src: "https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_darwin_amd64.zip"
+    src: "{{ terraform_download_url_prefix }}/{{ terraform_version }}/terraform_{{ terraform_version }}_darwin_amd64.zip"
     dest: /usr/local/bin
     remote_src: yes
   become_user: root
@@ -10,7 +10,7 @@
 
 - name: "Download v{{ terraform_version }} of terraform on Linux / WSL"
   unarchive:
-    src: "https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip"
+    src: "{{ terraform_download_url_prefix }}/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip"
     dest: /usr/local/bin
     remote_src: yes
   become_user: root
