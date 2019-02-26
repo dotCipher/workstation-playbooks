@@ -5,7 +5,7 @@
   become_user: "{{ lookup('env','USER') }}"
 
   vars_files:
-    - ../configs/homebrew.yml
+    - ../../configs/osx/homebrew.yml
 
   roles:
     - role: geerlingguy.homebrew

@@ -9,7 +9,7 @@
     state: present
     line: "{{ fish_shell_path.stdout }}"
 
-- name: "Set fish shell for {{ lookup('env','USER') }}"
+- name: "Set fish shell for {{ ansible_user }}"
   user:
     name: "{{ ansible_user }}"
     shell: "{{ fish_shell_path.stdout }}"
@@ -26,7 +26,7 @@
       get_url:
         url: https://get.oh-my.fish
         dest: "{{ ansible_env.HOME }}/.oh-my-fish-install.sh"
-        owner: "{{ lookup('env','USER') }}"
+        owner: "{{ ansible_user }}"
         mode: u+rwx
     - name: "Install oh-my-fish"
       command: "{{ ansible_env.HOME }}/.oh-my-fish-install.sh --noninteractive --yes"
@@ -35,10 +35,10 @@
         path: "{{ ansible_env.HOME }}/.oh-my-fish-install.sh"
         state: absent
   when: oh_my_fish_dir.stat.exists == False
-  become_user: "{{ lookup('env','USER') }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Install oh-my-fish plugins and themes"
   raw: "{{ fish_shell_path.stdout }} -c \"omf install {{ item|quote }}\""
   with_items: "{{ oh_my_fish_extensions }}"
-  become_user: "{{ lookup('env','USER') }}"
+  become_user: "{{ ansible_user }}"
   notify: "Update oh-my-fish"

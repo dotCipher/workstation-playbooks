@@ -8,6 +8,11 @@
     body_format: json
   register: response
 
+- name: Ensure that NVM_HOME exists
+  file:
+    path: "{{ lookup('env', 'NVM_HOME') }}"
+    state: directory
+
 - name: Download latest version of nvm
   get_url:
     url: "https://raw.githubusercontent.com/creationix/nvm/{{ response.json.tag_name }}/install.sh"
