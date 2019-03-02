@@ -35,4 +35,6 @@ dotfiles_files:
   - .gnupg/gpg-agent.conf
   # Vim
   - .vimrc
+  # Git
+  - .gitconfig
 
