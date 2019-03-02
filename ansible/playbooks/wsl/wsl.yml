@@ -1,0 +1,18 @@
+---
+- hosts: all
+  connection: local
+  become: true
+  become_user: root
+
+#
+# This config is mainly to help with the following issues:
+# https://github.com/Microsoft/WSL/issues/731
+# https://github.com/Microsoft/WSL/issues/81
+#
+
+  tasks:
+    - name: "Get template for wsl config"
+      get_url:
+        url: https://git.io/fhAry
+        dest: /etc/wsl.conf
+        mode: 0644
