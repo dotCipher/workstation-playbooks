@@ -8,6 +8,7 @@
     path: /etc/shells
     state: present
     line: "{{ fish_shell_path.stdout }}"
+  become_user: root
 
 - name: "Set fish shell for {{ lookup('env','USER') }}"
   user:
