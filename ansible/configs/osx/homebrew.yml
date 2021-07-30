@@ -43,6 +43,8 @@ homebrew_installed_packages:
   - htop
   # https://github.com/ajeetdsouza/zoxide
   - zoxide
+  # https://github.com/junegunn/fzf#installation
+  - fzf
   - fontconfig
   - jq
   - gnupg
