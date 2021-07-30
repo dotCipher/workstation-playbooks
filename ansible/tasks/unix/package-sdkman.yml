@@ -5,7 +5,6 @@
     state: present
   with_items:
     - zip
-  become_user: root
 
 - name: Download sdkman installer
   get_url:
@@ -37,10 +36,3 @@
     - oh_my_fish_dir.stat.exists == True
   become_user: "{{ lookup('env','USER') }}"
 
-- name: Symlink sdkman for shell compatibility
-  file:
-    src: "{{ sdkman_home }}/bin/sdkman-init.sh"
-    dest: "/bin/sdkman-init.sh"
-    state: link
-    owner: "{{ ansible_user_id }}"
-  become_user: root

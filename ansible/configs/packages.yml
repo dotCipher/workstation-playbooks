@@ -26,11 +26,8 @@ installed_packages:
   - jq
   - gnupg
   - direnv
-  - apt-transport-https
   - kubectl
-  - ca-certificates
+  - kubectx
   - curl
-  - software-properties-common
-  - containerd.io
-  - docker-ce-cli
-  - docker-ce
+  - autojump
+  - github/gh/gh

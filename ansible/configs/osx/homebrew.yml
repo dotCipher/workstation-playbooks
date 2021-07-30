@@ -41,8 +41,8 @@ homebrew_installed_packages:
   - awscli
   - rsync
   - htop
-  # https://github.com/wting/autojump#usage
-  - autojump
+  # https://github.com/ajeetdsouza/zoxide
+  - zoxide
   - fontconfig
   - jq
   - gnupg
@@ -59,9 +59,9 @@ homebrew_upgrade_all_packages: yes
 
 ## Taps you would like to make sure Homebrew has tapped.
 homebrew_taps:
-  - caskroom/cask
+  - homebrew/homebrew-cask
   # https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts
-  - caskroom/fonts
+  - homebrew/cask-fonts
 
 ## Apps you would like to have installed via cask.
 ##  Search for popular apps on https://caskroom.github.io/search to see if they're available for install via Cask.
@@ -91,6 +91,9 @@ homebrew_cask_apps:
   - flux
   - transmission
   - transmission-remote-gui
+  - rectangle
+  - gpg-suite
+  - tunnelblick
   # VirtualBox removed due to issue with automatic installation
   # See:  https://github.com/caskroom/homebrew-cask/issues/39369
 #  - virtualbox

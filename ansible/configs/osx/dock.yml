@@ -25,6 +25,13 @@ dockitems_to_remove:
   - Slack
   - zoom.us
   - Self Service
+  - Pages
+  - Keynote
+  - Numbers
+  - News
+  - TV
+  - Podcasts
+  - Music
 
 ## Setup an ordered list of dock items to set with an ordered position (left to right, 1-indexed)
 #dockitems_to_persist:
