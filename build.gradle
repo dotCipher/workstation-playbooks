@@ -1,3 +1,0 @@
-// Allow for dev environment within intellij
-apply plugin: 'idea'
-
