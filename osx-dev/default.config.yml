@@ -1,0 +1,109 @@
+---
+downloads: ~/.ansible-downloads/
+
+configure_dotfiles: true
+configure_terminal: true
+configure_osx: true
+
+# Set to 'true' to configure the Dock via dockutil.
+configure_dock: true
+dockitems_remove: [
+  'Launchpad',
+  'TV',
+  'Podcasts',
+  'App Store',
+]
+dockitems_persist: []
+# - name: "Sublime Text"
+#   path: "/Applications/Sublime Text.app/"
+#   pos: 5
+
+configure_sudoers: false
+sudoers_custom_config: ''
+# Example:
+# sudoers_custom_config: |
+#   # Allow users in admin group to use sudo with no password.
+#   %admin ALL=(ALL) NOPASSWD: ALL
+
+dotfiles_repo: git@github.com:dotCipher/dotfiles.git
+dotfiles_repo_accept_hostkey: true
+dotfiles_repo_local_destination: ~/Workspace/personal/dotfiles
+dotfiles_files:
+  - .bash_aliases
+  - .bash_env
+  - .bash_profile
+  - .bashrc
+  - .gitconfig
+  - .gnupg/gpg-agent.conf
+  - .config/fish/config.fish
+  - .config/fish/alias.fish
+  - .config/fish/functions/get-cert.fish
+  - .config/fish/functions/gi.fish
+  - .config/fish/functions/git-prune-all.fish
+  - .config/fish/functions/git-prune.fish
+  - .config/fish/functions/gppr.fish
+  - .osx
+  - .vimrc
+
+homebrew_installed_packages:
+  # - ansible # Installed via Pip.
+  - autoconf
+  - bash-completion
+  - gettext
+  - git
+  - gh
+  - redis
+  - auth0
+  - bat
+  - exa
+  - exiftool
+  - fish
+  - go
+  - golang-migrate
+  - golangci-lint
+  - gpg
+  - iperf
+  - imagemagick
+  - libevent
+  - jwt-cli
+  - k9s
+  - kotlin
+  - jq
+  - python@3.10
+  - python@3.11
+  - mcrypt
+  - nmap
+  - node
+  - nvm
+  - ssh-copy-id
+  - cowsay
+  - readline
+  - openssl
+  - pv
+  - wget
+  - virtualenv
+  - zoxide
+  - vim
+  - pyenv
+
+homebrew_taps:
+  - homebrew/core
+  - homebrew/cask
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - chromedriver
+  - docker
+  - google-chrome
+  - slack
+  - alacritty
+
+# See `geerlingguy.mas` role documentation for usage instructions.
+mas_installed_apps: []
+mas_email: ""
+mas_password: ""
+
+osx_script: "~/.osx --no-restart"
+
+# Glob pattern to ansible task files to run after all other tasks are finished.
+post_provision_tasks: []

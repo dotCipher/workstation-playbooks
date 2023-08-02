@@ -3,7 +3,38 @@
 > Inspired by [geerlingguy/mac-dev-playbook](https://github.com/geerlingguy/mac-dev-playbook) and [donnemartin/dev-setup](https://github.com/donnemartin/dev-setup).
 
 This repo contains platform-agnostic Ansible playbooks to provision all 
-aspects of my developer setup in a modular fashion.
+aspects of my developer setup in a modular fashion. 
+
+
+## Workstations
+
+All individual workstation types are isolated in their own nested folders under this
+project root.
+
+The following workstations are supported:
+- `osx-dev` 
+
+
+
+### OSX Developer Workstation (`osx-dev`)
+
+This playbook is designed to be ran on a fresh OSX install and will install all
+the necessary tools and packages to get a developer workstation up and running.
+
+
+#### Pre-requisites (manual)
+
+1. Install Apple's command line tools (`xcode-select --install` to launch the installer).
+2. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html):
+
+    1. Run the following command to add Python 3 to your $PATH: `export PATH="$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:$PATH"`
+    2. Upgrade Pip: `sudo pip3 install --upgrade pip`
+    3. Install Ansible: `pip3 install ansible`
+
+3. Clone this repo: `git clone git@github.com:dotCipher/workstation-playbooks.git`
+4. **Sign into App Store** (since the `mas` automation playbook can't sign in automatically)
+5. Run `ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
+6. Run `ansible-playbook main.yml --ask-become-pass` inside this directory. Enter your macOS account password when prompted for the 'BECOME' password.
 
 ### Usage (automatic)
 
