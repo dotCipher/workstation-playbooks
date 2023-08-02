@@ -25,11 +25,13 @@ the necessary tools and packages to get a developer workstation up and running.
 #### Pre-requisites (manual)
 
 1. Install Apple's command line tools (`xcode-select --install` to launch the installer).
-2. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html):
+2. [Install Homebrew](https://brew.sh/) (automated in the task, but should be done manually for the ansible install)
 
-    1. Run the following command to add Python 3 to your $PATH: `export PATH="$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:$PATH"`
-    2. Upgrade Pip: `sudo pip3 install --upgrade pip`
-    3. Install Ansible: `pip3 install ansible`
+    1. `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+
+3. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html):
+
+    1. `brew install ansible` (https://formulae.brew.sh/formula/ansible)
 
 3. Clone this repo: `git clone git@github.com:dotCipher/workstation-playbooks.git`
 4. **Sign into App Store** (since the `mas` automation playbook can't sign in automatically)
