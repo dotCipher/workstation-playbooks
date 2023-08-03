@@ -13,7 +13,6 @@
       tags: ['always']
 
   roles:
-    - role: elliotweiser.osx-command-line-tools
     - role: geerlingguy.mac.homebrew
       tags: ['homebrew']
     - role: geerlingguy.dotfiles
