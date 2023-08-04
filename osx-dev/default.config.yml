@@ -51,7 +51,7 @@ homebrew_installed_packages:
   - git
   - gh
   - redis
-  - auth0
+  - auth0/auth0-cli/auth0
   - bat
   - exa
   - exiftool
