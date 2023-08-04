@@ -88,6 +88,7 @@ homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - chromedriver
   - docker
+  - discord
   - google-chrome
   - slack
   - alacritty
