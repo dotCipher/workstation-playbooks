@@ -33,8 +33,8 @@ dotfiles_files:
   - .bash_profile
   - .bashrc
   - .gitconfig
-  - .gnupg/gpg-agent.conf
-  - .config/fish
+  - .gnupg
+  - .config
   - .osx
   - .vimrc
 
