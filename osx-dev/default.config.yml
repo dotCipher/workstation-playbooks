@@ -87,6 +87,7 @@ homebrew_installed_packages:
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
+  - mike-engel/jwt-cli
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
