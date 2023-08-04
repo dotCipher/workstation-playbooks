@@ -12,6 +12,19 @@ dockitems_remove: [
   'TV',
   'Podcasts',
   'App Store',
+  'Safari',
+  'Messages',
+  'Mail',
+  'Maps',
+  'Photos',
+  'FaceTime',
+  'Calendar',
+  'Contacts',
+  'Reminders',
+  'Notes',
+  'Music',
+  'News',
+  'FreeForm',
 ]
 dockitems_persist: []
 # - name: "Sublime Text"
