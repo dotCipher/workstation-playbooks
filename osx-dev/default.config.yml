@@ -34,13 +34,7 @@ dotfiles_files:
   - .bashrc
   - .gitconfig
   - .gnupg/gpg-agent.conf
-  - .config/fish/config.fish
-  - .config/fish/alias.fish
-  - .config/fish/functions/get-cert.fish
-  - .config/fish/functions/gi.fish
-  - .config/fish/functions/git-prune-all.fish
-  - .config/fish/functions/git-prune.fish
-  - .config/fish/functions/gppr.fish
+  - .config/fish
   - .osx
   - .vimrc
 
