@@ -24,7 +24,7 @@ dockitems_remove: [
   'Notes',
   'Music',
   'News',
-  'FreeForm',
+  'Freeform',
 ]
 dockitems_persist: []
 # - name: "Sublime Text"
