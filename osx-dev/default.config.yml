@@ -109,6 +109,8 @@ homebrew_cask_apps:
   - 1password
   - jetbrains-toolbox
   - messenger
+  - rectangle
+  
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps: []
