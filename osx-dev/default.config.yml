@@ -104,6 +104,7 @@ homebrew_cask_apps:
   - discord
   - google-chrome
   - slack
+  - spotify
   - alacritty
   - 1password
   - jetbrains-toolbox
