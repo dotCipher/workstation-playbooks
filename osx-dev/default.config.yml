@@ -90,11 +90,13 @@ homebrew_installed_packages:
   - virtualenv
   - zoxide
   - vim
+  - pinentry
   - pyenv
 
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
+  - homebrew/cask-fonts
   - mike-engel/jwt-cli
 
 homebrew_cask_appdir: /Applications
@@ -110,7 +112,10 @@ homebrew_cask_apps:
   - jetbrains-toolbox
   - messenger
   - rectangle
-  
+  - nordvpn
+  - font-hack-nerd-font
+  - postman
+  - sdm
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps: []
