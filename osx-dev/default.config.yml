@@ -25,6 +25,9 @@ dockitems_remove: [
   'Music',
   'News',
   'Freeform',
+  'Keynote',
+  'Numbers',
+  'Pages',
 ]
 dockitems_persist: []
 # - name: "Sublime Text"
@@ -77,7 +80,6 @@ homebrew_installed_packages:
   - jq
   - python@3.10
   - python@3.11
-  - mcrypt
   - nmap
   - node
   - nvm
@@ -108,6 +110,7 @@ homebrew_cask_apps:
   - slack
   - spotify
   - alacritty
+  - alfred
   - 1password
   - jetbrains-toolbox
   - messenger
@@ -115,7 +118,8 @@ homebrew_cask_apps:
   - nordvpn
   - font-hack-nerd-font
   - postman
-  - sdm
+  - visual-studio-code
+  - keeper-password-manager
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps: []
