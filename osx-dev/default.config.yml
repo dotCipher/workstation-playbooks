@@ -190,7 +190,6 @@ homebrew_cask_apps:
   - zed
   - visual-studio-code
   - jetbrains-toolbox
-  - cursor
 
   # Productivity & utilities
   - alfred
@@ -218,7 +217,6 @@ homebrew_cask_apps:
   - audacity
   - audible
   - blackhole-2ch
-  - iina
   - obs
 
   # Security & networking
