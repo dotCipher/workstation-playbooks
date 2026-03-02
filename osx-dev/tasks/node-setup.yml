@@ -28,3 +28,16 @@
   become: false
   args:
     executable: /bin/bash
+
+- name: Install global npm packages.
+  shell: |
+    export NVM_DIR="{{ ansible_env.HOME }}/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    if ! npm ls -g {{ item }} --depth=0 >/dev/null 2>&1; then
+      npm install -g {{ item }}
+    fi
+  loop: "{{ npm_global_packages | default([]) }}"
+  become: false
+  changed_when: false
+  args:
+    executable: /bin/bash

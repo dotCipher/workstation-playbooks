@@ -1,0 +1,24 @@
+---
+- name: Check if Rust toolchain is installed.
+  command: rustup show active-toolchain
+  register: rustup_check
+  changed_when: false
+  failed_when: false
+  become: false
+
+- name: Install default Rust toolchain via rustup.
+  command: rustup-init -y --no-modify-path
+  when: rustup_check.rc != 0
+  become: false
+
+- name: Install Cargo packages.
+  shell: |
+    source "$HOME/.cargo/env"
+    if ! cargo install --list | grep -q "^{{ item }} "; then
+      cargo install {{ item }}
+    fi
+  loop: "{{ cargo_packages | default([]) }}"
+  become: false
+  changed_when: false
+  args:
+    executable: /bin/bash

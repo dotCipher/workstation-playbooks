@@ -43,6 +43,14 @@
       when: configure_node
       tags: ['node']
 
+    - import_tasks: tasks/rust-setup.yml
+      when: configure_rust
+      tags: ['rust']
+
+    - import_tasks: tasks/go-tools.yml
+      when: configure_go_tools
+      tags: ['go']
+
     - name: Run post-provision task files in a block.
       tags: ['post']
       block:

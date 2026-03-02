@@ -6,6 +6,8 @@ configure_terminal: true
 configure_osx: true
 configure_node: true
 configure_shell: true
+configure_rust: true
+configure_go_tools: true
 
 # Set to 'true' to configure the Dock via dockutil.
 configure_dock: true
@@ -46,6 +48,7 @@ dotfiles_repo_version: main
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/Workspace/personal/dotfiles
 dotfiles_files:
+  - .actrc
   - .bash_aliases
   - .bash_env
   - .bash_profile
@@ -87,6 +90,8 @@ homebrew_installed_packages:
   - cowsay
   - mas
 
+  - ansible
+
   # Networking / security
   - nmap
   - iperf
@@ -94,6 +99,7 @@ homebrew_installed_packages:
   - gnupg
   - pinentry-mac
   - httpie
+  - doctl
 
   # Shell
   - fish
@@ -115,6 +121,9 @@ homebrew_installed_packages:
   - golang-migrate
   - golangci-lint
   - gotestsum
+
+  # Static analysis / security scanning
+  - semgrep
 
   # Build tools
   - cmake
@@ -156,6 +165,11 @@ homebrew_installed_packages:
   - vim
   - ollama
   - aria2
+  - livekit
+  - anomalyco/tap/opencode
+  - mongodb-atlas-cli
+  - render
+  - docker
 
 homebrew_taps:
   - hashicorp/tap
@@ -163,6 +177,7 @@ homebrew_taps:
   - go-task/tap
   - warrensbox/tap
   - supabase/tap
+  - anomalyco/tap
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
@@ -189,6 +204,7 @@ homebrew_cask_apps:
   # Development
   - docker
   - postman
+  - postman-cli
   - bruno
 
   # Media & creative
@@ -204,10 +220,14 @@ homebrew_cask_apps:
   - font-hack-nerd-font
   - font-karla
 
+  # AI tools
+  - codex
+
   # System tools
   - dockutil
   - balenaetcher
   - basictex
+  - macfuse
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps:
@@ -216,6 +236,27 @@ mas_installed_apps:
 
 mas_email: ""
 mas_password: ""
+
+# Cargo crates to install via `cargo install`.
+cargo_packages:
+  - cargo-deny
+  - cargo-llvm-cov
+  - cargo-tarpaulin
+
+# Go tools to install via `go install`.
+go_tools:
+  - golang.org/x/tools/gopls@latest
+  - mvdan.cc/gofumpt@latest
+  - dario.cat/gci@latest
+  - honnef.co/go/tools/cmd/staticcheck@latest
+  - golang.org/x/vuln/cmd/govulncheck@latest
+  - github.com/go-delve/delve/cmd/dlv@latest
+  - github.com/getsops/sops/v3/cmd/sops@latest
+
+# Global npm packages to install after Node.js setup.
+npm_global_packages:
+  - pnpm
+  - newman
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []
