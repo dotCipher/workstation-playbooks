@@ -1,101 +1,56 @@
-# Dev Workstation Playbooks
+# Workstation Playbooks
 
-> Inspired by [geerlingguy/mac-dev-playbook](https://github.com/geerlingguy/mac-dev-playbook).
+Ansible playbooks to provision a macOS developer workstation from a clean install.
+Dotfiles live in a [separate repo](https://github.com/dotCipher/dotfiles) and are
+symlinked via the `geerlingguy.dotfiles` role.
 
-Ansible playbooks to provision developer workstations from a clean OS install.
-Dotfiles are managed in a [separate repo](https://github.com/dotCipher/dotfiles)
-and deployed via the `geerlingguy.dotfiles` role.
-
-## Workstations
-
-| Playbook | Status | Description |
-|----------|--------|-------------|
-| `osx-dev` | Active | macOS developer workstation |
-
-## Quick Start (macOS)
-
-On a fresh macOS install:
+## Quick Start
 
 ```bash
-# 1. Install Xcode Command Line Tools
 xcode-select --install
-
-# 2. Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# 3. Install Ansible
 brew install ansible
-
-# 4. Clone this repo
 git clone git@github.com:dotCipher/workstation-playbooks.git
 cd workstation-playbooks/osx-dev
-
-# 5. Sign into the Mac App Store (required for mas automation)
-
-# 6. Install Ansible dependencies
 ansible-galaxy install -r requirements.yml
-
-# 7. Run the playbook
-ansible-playbook main.yml --ask-become-pass
+ansible-playbook main.yml --ask-become-pass   # sign into the App Store first
 ```
 
-> **Note:** Run from within the `osx-dev/` directory so `ansible.cfg` and
-> `inventory` are picked up automatically.
+> Run from inside `osx-dev/` so `ansible.cfg` and `inventory` are found.
 
-## What It Configures
+## What It Does
 
-The `osx-dev` playbook runs these steps in order:
+| Step | Tag | Description |
+|------|-----|-------------|
+| 1 | `xcode` | Xcode CLI Tools |
+| 2 | `homebrew` | 80 formulae, 47 casks, 6 taps |
+| 3 | `dotfiles` | Clone & symlink [dotfiles](https://github.com/dotCipher/dotfiles) |
+| 4 | `mas` | Mac App Store (Tailscale) |
+| 5 | `dock` | Minimal dock (System Settings only, autohide) |
+| 6 | `sudoers` | Passwordless sudo for admin group |
+| 7 | `osx` | macOS defaults (dark mode, keyboard, Finder, screenshots, etc.) |
+| 8 | `shell` | Fish default shell, Fisher plugins, SSH + 1Password agent |
+| 9 | `node` | Node.js via NVM, global npm packages (pnpm, newman) |
+| 10 | `rust` | Toolchain via rustup, cargo packages |
+| 11 | `go` | Dev tools via `go install` (gopls, staticcheck, etc.) |
+| 12 | `pipx` | Python CLI tools (vastai, wandb) |
 
-1. **Xcode CLI Tools** - Ensures they're installed
-2. **Homebrew** - Installs ~80 formulae, ~45 casks, and 6 taps
-3. **Dotfiles** - Clones and symlinks from [dotCipher/dotfiles](https://github.com/dotCipher/dotfiles)
-4. **Mac App Store** - Installs apps via `mas` (Tailscale)
-5. **Dock** - Removes default apps, sets minimal layout (System Settings only)
-6. **Sudoers** - Passwordless sudo for admin group
-7. **macOS Defaults** - Dark mode, keyboard, Finder, Dock, screenshots, etc.
-8. **Shell Setup** - Fish as default shell, Fisher plugins, base SSH config
-9. **Node.js** - Installs Node via NVM, plus global npm packages (pnpm, newman)
-10. **Rust** - Installs toolchain via rustup, plus cargo packages
-11. **Go Tools** - Installs dev tools via `go install` (gopls, staticcheck, etc.)
-12. **pipx** - Installs Python CLI tools (vastai, wandb)
-
-## Running Individual Tags
-
-```bash
-ansible-playbook main.yml --ask-become-pass --tags homebrew
-ansible-playbook main.yml --ask-become-pass --tags dotfiles
-ansible-playbook main.yml --ask-become-pass --tags osx
-ansible-playbook main.yml --ask-become-pass --tags dock
-ansible-playbook main.yml --ask-become-pass --tags mas
-ansible-playbook main.yml --ask-become-pass --tags shell
-ansible-playbook main.yml --ask-become-pass --tags node
-ansible-playbook main.yml --ask-become-pass --tags rust
-ansible-playbook main.yml --ask-become-pass --tags go
-ansible-playbook main.yml --ask-become-pass --tags pipx
-ansible-playbook main.yml --ask-become-pass --tags sudoers
-```
+Run a single step: `ansible-playbook main.yml --ask-become-pass --tags osx`
 
 ## Overriding Defaults
 
-Create `osx-dev/config.yml` (gitignored) to override any variable in
-`osx-dev/default.config.yml` without modifying the defaults file.
+Create `osx-dev/config.yml` to override any variable in `default.config.yml`.
+This file is gitignored.
 
-## Directory Structure
+## Layout
 
 ```
 osx-dev/
-  ansible.cfg             # Ansible config
-  default.config.yml      # Default variables (packages, casks, settings)
-  inventory               # Localhost inventory
-  main.yml                # Main playbook
-  requirements.yml        # Galaxy roles and collections (pinned versions)
+  ansible.cfg          default.config.yml   inventory
+  main.yml             requirements.yml
   tasks/
-    go-tools.yml          # Go dev tools via go install
-    node-setup.yml        # NVM + Node.js + global npm packages
-    osx-defaults.yml      # macOS system preferences via osx_defaults
-    pipx-setup.yml        # Python CLI tools via pipx
-    rust-setup.yml        # Rust toolchain + cargo packages
-    shell-setup.yml       # Fish shell + Fisher + SSH config
-    sudoers.yml           # Passwordless sudo config
-  roles/                  # Galaxy-installed roles (gitignored, install via requirements.yml)
+    go-tools.yml       node-setup.yml       osx-defaults.yml
+    pipx-setup.yml     rust-setup.yml       shell-setup.yml
+    sudoers.yml
+  roles/               # installed via ansible-galaxy, gitignored
 ```
