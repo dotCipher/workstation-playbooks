@@ -4,40 +4,42 @@ downloads: ~/.ansible-downloads/
 configure_dotfiles: true
 configure_terminal: true
 configure_osx: true
+configure_node: true
+configure_shell: true
 
 # Set to 'true' to configure the Dock via dockutil.
 configure_dock: true
-dockitems_remove: [
-  'Launchpad',
-  'TV',
-  'Podcasts',
-  'App Store',
-  'Safari',
-  'Messages',
-  'Mail',
-  'Maps',
-  'Photos',
-  'FaceTime',
-  'Calendar',
-  'Contacts',
-  'Reminders',
-  'Notes',
-  'Music',
-  'News',
-  'Freeform',
-  'Keynote',
-  'Numbers',
-  'Pages',
-]
-dockitems_persist: []
-# - name: "Sublime Text"
-#   path: "/Applications/Sublime Text.app/"
-#   pos: 5
+dockitems_remove:
+  - Launchpad
+  - TV
+  - Podcasts
+  - "App Store"
+  - Safari
+  - Messages
+  - Mail
+  - Maps
+  - Photos
+  - FaceTime
+  - Calendar
+  - Contacts
+  - Reminders
+  - Notes
+  - Music
+  - News
+  - Freeform
+  - Keynote
+  - Numbers
+  - Pages
+  - iPhone Mirroring
+dockitems_persist:
+  - name: "System Settings"
+    path: "/System/Applications/System Settings.app/"
+    pos: 1
 
 configure_sudoers: true
 sudoers_custom_config: |
-   # Allow users in admin group to use sudo with no password.
-   %admin ALL=(ALL) NOPASSWD: ALL
+  # Allow users in admin group to use sudo with no password.
+  %admin ALL=(ALL) NOPASSWD: ALL
 
 dotfiles_repo: git@github.com:dotCipher/dotfiles.git
 dotfiles_repo_version: main
@@ -48,85 +50,174 @@ dotfiles_files:
   - .bash_env
   - .bash_profile
   - .bashrc
+  - .config
   - .gitconfig
   - .gnupg
-  - .config
   - .osx
+  - .profile
+  - .tmux.conf
   - .vimrc
+  - .zprofile
+  - .zshenv
+
+# Default Node.js version to install via NVM.
+node_default_version: "20"
 
 homebrew_installed_packages:
-  # - ansible # Installed via Pip.
-  - autoconf
-  - bash-completion
-  - gettext
+  # Core CLI tools
   - git
   - gh
-  - redis
-  - auth0/auth0-cli/auth0
+  - bash-completion
+  - coreutils
+  - gnu-sed
+  - tree
+  - wget
+  - pv
+  - p7zip
+  - ripgrep
+  - the_silver_searcher
   - bat
-  - exa
+  - eza
+  - jq
+  - yq
+  - jd
+  - fclones
   - exiftool
+  - rclone
+  - pandoc
+  - cowsay
+  - mas
+
+  # Networking / security
+  - nmap
+  - iperf
+  - ssh-copy-id
+  - gnupg
+  - pinentry-mac
+  - httpie
+
+  # Shell
   - fish
+  - tmux
+  - zoxide
+
+  # Languages & runtimes
   - go
+  - kotlin
+  - rustup
+  - python@3.13
+  - pyenv
+  - nvm
+  - pipx
+  - poetry
+  - virtualenv
+
+  # Go tooling
   - golang-migrate
   - golangci-lint
-  - gpg
-  - iperf
-  - imagemagick
-  - libevent
-  - jwt-cli
+  - gotestsum
+
+  # Build tools
+  - cmake
+  - binutils
+  - pre-commit
+  - prettier
+  - act
+
+  # DevOps / Infrastructure
+  - hashicorp/tap/terraform
+  - terragrunt
+  - warrensbox/tap/tfswitch
+  - jsonnet
+  - helm
   - k9s
-  - kotlin
-  - jq
-  - python@3.10
-  - python@3.11
-  - nmap
-  - node
-  - nvm
-  - ssh-copy-id
-  - cowsay
-  - readline
-  - openssl
-  - pv
-  - wget
-  - virtualenv
-  - zoxide
+  - kind
+  - kustomize
+  - awscli
+
+  # Data / services
+  - redis
+  - postgresql@14
+  - rabbitmq
+  - libpq
+  - supabase/tap/supabase
+
+  # Media / document processing
+  - ffmpeg
+  - imagemagick
+  - poppler
+  - portaudio
+  - pillow
+  - testdisk
+
+  # Misc dev tools
+  - mike-engel/jwt-cli/jwt-cli
+  - go-task
+  - git-filter-repo
+  - yarn
   - vim
-  - pinentry
-  - pyenv
+  - ollama
+  - aria2
 
 homebrew_taps:
-  - homebrew/core
-  - homebrew/cask
-  - homebrew/cask-fonts
+  - hashicorp/tap
   - mike-engel/jwt-cli
+  - go-task/tap
+  - warrensbox/tap
+  - supabase/tap
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  - chromedriver
-  - docker
-  - discord
+  # Browsers
   - google-chrome
-  - slack
-  - spotify
+  - chromedriver
+
+  # Terminals & editors
   - alacritty
-  - alfred
-  - 1password
-  - jetbrains-toolbox
-  - messenger
-  - rectangle
-  - nordvpn
-  - font-hack-nerd-font
-  - postman
+  - zed
   - visual-studio-code
+  - jetbrains-toolbox
+
+  # Productivity & utilities
+  - alfred
+  - rectangle
+  - 1password
+
+  # Communication
+  - slack
+  - discord
+  - messenger
+
+  # Development
+  - docker
+  - postman
+  - bruno
+
+  # Media & creative
+  - spotify
+  - audacity
+  - blackhole-2ch
+
+  # Security & networking
+  - nordvpn
   - keeper-password-manager
 
+  # Fonts
+  - font-hack-nerd-font
+  - font-karla
+
+  # System tools
+  - dockutil
+  - balenaetcher
+  - basictex
+
 # See `geerlingguy.mas` role documentation for usage instructions.
-mas_installed_apps: []
+mas_installed_apps:
+  - id: 1475387142
+    name: "Tailscale"
+
 mas_email: ""
 mas_password: ""
-
-osx_script: "~/.osx --no-restart"
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []

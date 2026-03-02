@@ -31,9 +31,17 @@
       when: configure_sudoers
       tags: ['sudoers']
 
-    - import_tasks: tasks/osx.yml
+    - import_tasks: tasks/osx-defaults.yml
       when: configure_osx
       tags: ['osx']
+
+    - import_tasks: tasks/shell-setup.yml
+      when: configure_shell
+      tags: ['shell']
+
+    - import_tasks: tasks/node-setup.yml
+      when: configure_node
+      tags: ['node']
 
     - name: Run post-provision task files in a block.
       tags: ['post']

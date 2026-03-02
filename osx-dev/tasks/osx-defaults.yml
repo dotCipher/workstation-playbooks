@@ -1,0 +1,486 @@
+---
+###############################################################################
+# General UI/UX                                                               #
+###############################################################################
+
+- name: Set dark mode.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleInterfaceStyle
+    type: string
+    value: Dark
+
+- name: Expand save panel by default.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: NSNavPanelExpandedStateForSaveMode
+    type: bool
+    value: true
+
+- name: Expand save panel by default (secondary).
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: NSNavPanelExpandedStateForSaveMode2
+    type: bool
+    value: true
+
+- name: Expand print panel by default.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: PMPrintingExpandedStateForPrint
+    type: bool
+    value: true
+
+- name: Expand print panel by default (secondary).
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: PMPrintingExpandedStateForPrint2
+    type: bool
+    value: true
+
+- name: Save to disk (not iCloud) by default.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: NSDocumentSaveNewDocumentsToCloud
+    type: bool
+    value: false
+
+- name: Disable smart quotes.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: NSAutomaticQuoteSubstitutionEnabled
+    type: bool
+    value: false
+
+- name: Disable smart dashes.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: NSAutomaticDashSubstitutionEnabled
+    type: bool
+    value: false
+
+- name: Disable auto-correct.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: NSAutomaticSpellingCorrectionEnabled
+    type: bool
+    value: false
+
+- name: Enable WebKit developer extras globally.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: WebKitDeveloperExtras
+    type: bool
+    value: true
+
+- name: Automatically quit printer app once jobs complete.
+  community.general.osx_defaults:
+    domain: com.apple.print.PrintingPrefs
+    key: "Quit When Finished"
+    type: bool
+    value: true
+
+###############################################################################
+# Trackpad, keyboard, and input                                               #
+###############################################################################
+
+- name: Disable natural scroll direction.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: com.apple.swipescrolldirection
+    type: bool
+    value: false
+
+- name: Disable press-and-hold in favor of key repeat.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: ApplePressAndHoldEnabled
+    type: bool
+    value: false
+
+- name: Set fast initial key repeat.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: InitialKeyRepeat
+    type: int
+    value: 20
+
+- name: Set blazingly fast key repeat rate.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: KeyRepeat
+    type: int
+    value: 1
+
+- name: Enable spring loading for directories.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: com.apple.springing.enabled
+    type: bool
+    value: true
+
+- name: Set short spring loading delay.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: com.apple.springing.delay
+    type: float
+    value: 0.1
+
+- name: Map trackpad bottom-right corner to right-click.
+  community.general.osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: TrackpadCornerSecondaryClick
+    type: int
+    value: 2
+
+- name: Enable trackpad right-click.
+  community.general.osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: TrackpadRightClick
+    type: bool
+    value: true
+
+- name: Enable right-click on Bluetooth trackpad.
+  community.general.osx_defaults:
+    domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadRightClick
+    type: bool
+    value: true
+
+- name: Set context menu gesture.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: ContextMenuGesture
+    type: int
+    value: 1
+
+###############################################################################
+# Screen                                                                      #
+###############################################################################
+
+- name: Save screenshots to Downloads folder.
+  community.general.osx_defaults:
+    domain: com.apple.screencapture
+    key: location
+    type: string
+    value: "{{ ansible_env.HOME }}/Downloads"
+
+- name: Save screenshots in PNG format.
+  community.general.osx_defaults:
+    domain: com.apple.screencapture
+    key: type
+    type: string
+    value: png
+
+- name: Disable shadow in screenshots.
+  community.general.osx_defaults:
+    domain: com.apple.screencapture
+    key: disable-shadow
+    type: bool
+    value: true
+
+###############################################################################
+# Finder                                                                      #
+###############################################################################
+
+- name: Set Desktop as default Finder location.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: NewWindowTarget
+    type: string
+    value: PfDe
+
+- name: Show external hard drives on desktop.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: ShowExternalHardDrivesOnDesktop
+    type: bool
+    value: true
+
+- name: Show hard drives on desktop.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: ShowHardDrivesOnDesktop
+    type: bool
+    value: true
+
+- name: Show mounted servers on desktop.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: ShowMountedServersOnDesktop
+    type: bool
+    value: true
+
+- name: Show removable media on desktop.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: ShowRemovableMediaOnDesktop
+    type: bool
+    value: true
+
+- name: Show all filename extensions.
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleShowAllExtensions
+    type: bool
+    value: true
+
+- name: Show Finder status bar.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: ShowStatusBar
+    type: bool
+    value: true
+
+- name: Show Finder sidebar.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: ShowSidebar
+    type: bool
+    value: true
+
+- name: Allow text selection in Quick Look.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: QLEnableTextSelection
+    type: bool
+    value: true
+
+- name: Display full POSIX path in Finder title bar.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: _FXShowPosixPathInTitle
+    type: bool
+    value: true
+
+- name: Search current folder by default.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: FXDefaultSearchScope
+    type: string
+    value: SCcf
+
+- name: Disable file extension change warning.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: FXEnableExtensionChangeWarning
+    type: bool
+    value: false
+
+- name: Auto-remove old Trash items after 30 days.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: FXRemoveOldTrashItems
+    type: bool
+    value: true
+
+- name: Use Gallery view in Finder by default.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: FXPreferredViewStyle
+    type: string
+    value: glyv
+
+- name: Disable iCloud Desktop sync.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: FXICloudDriveDesktop
+    type: bool
+    value: false
+
+- name: Disable iCloud Documents sync.
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: FXICloudDriveDocuments
+    type: bool
+    value: false
+
+- name: Avoid .DS_Store files on network volumes.
+  community.general.osx_defaults:
+    domain: com.apple.desktopservices
+    key: DSDontWriteNetworkStores
+    type: bool
+    value: true
+
+- name: Show ~/Library folder.
+  shell: chflags nohidden {{ ansible_env.HOME }}/Library
+  changed_when: false
+  become: false
+
+###############################################################################
+# Dock                                                                        #
+###############################################################################
+
+- name: Set Dock icon size to 70.
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: tilesize
+    type: int
+    value: 70
+
+- name: Enable Dock auto-hide.
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: autohide
+    type: bool
+    value: true
+
+- name: Speed up Mission Control animations.
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: expose-animation-duration
+    type: float
+    value: 0.15
+
+- name: Make hidden application icons translucent.
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: showhidden
+    type: bool
+    value: true
+
+# Hot corners - all disabled (no-op = 1)
+- name: Disable bottom-left hot corner.
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: wvous-bl-corner
+    type: int
+    value: 1
+
+- name: Set bottom-left hot corner modifier.
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: wvous-bl-modifier
+    type: int
+    value: 0
+
+- name: Disable bottom-right hot corner.
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: wvous-br-corner
+    type: int
+    value: 1
+
+- name: Set bottom-right hot corner modifier.
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: wvous-br-modifier
+    type: int
+    value: 0
+
+###############################################################################
+# Menu Bar                                                                    #
+###############################################################################
+
+- name: Show AM/PM in menu bar clock.
+  community.general.osx_defaults:
+    domain: com.apple.menuextra.clock
+    key: ShowAMPM
+    type: bool
+    value: true
+
+- name: Hide date in menu bar clock.
+  community.general.osx_defaults:
+    domain: com.apple.menuextra.clock
+    key: ShowDate
+    type: int
+    value: 0
+
+- name: Show day of week in menu bar clock.
+  community.general.osx_defaults:
+    domain: com.apple.menuextra.clock
+    key: ShowDayOfWeek
+    type: bool
+    value: true
+
+###############################################################################
+# Window Manager                                                              #
+###############################################################################
+
+- name: Disable click-to-show-desktop.
+  community.general.osx_defaults:
+    domain: com.apple.WindowManager
+    key: EnableStandardClickToShowDesktop
+    type: bool
+    value: false
+
+###############################################################################
+# Safari & WebKit                                                             #
+###############################################################################
+
+- name: Enable Safari Develop menu.
+  community.general.osx_defaults:
+    domain: com.apple.Safari
+    key: IncludeDevelopMenu
+    type: bool
+    value: true
+  failed_when: false
+
+- name: Enable Safari WebKit developer extras.
+  community.general.osx_defaults:
+    domain: com.apple.Safari
+    key: WebKitDeveloperExtrasEnabledPreferenceKey
+    type: bool
+    value: true
+  failed_when: false
+
+###############################################################################
+# Mail                                                                        #
+###############################################################################
+
+- name: Copy email addresses without names in Mail.app.
+  community.general.osx_defaults:
+    domain: com.apple.mail
+    key: AddressesIncludeNameOnPasteboard
+    type: bool
+    value: false
+
+###############################################################################
+# Activity Monitor                                                            #
+###############################################################################
+
+- name: Show main window when launching Activity Monitor.
+  community.general.osx_defaults:
+    domain: com.apple.ActivityMonitor
+    key: OpenMainWindow
+    type: bool
+    value: true
+
+- name: Show all processes in Activity Monitor.
+  community.general.osx_defaults:
+    domain: com.apple.ActivityMonitor
+    key: ShowCategory
+    type: int
+    value: 0
+
+###############################################################################
+# Messages                                                                    #
+###############################################################################
+
+- name: Disable smart quotes in Messages.
+  community.general.osx_defaults:
+    domain: com.apple.messageshelper.MessageController
+    key: SOInputLineSettings
+    type: dict
+    value:
+      automaticQuoteSubstitutionEnabled: false
+  failed_when: false
+
+###############################################################################
+# Restart affected applications                                               #
+###############################################################################
+
+- name: Restart Dock to apply changes.
+  command: killall Dock
+  changed_when: false
+  failed_when: false
+
+- name: Restart Finder to apply changes.
+  command: killall Finder
+  changed_when: false
+  failed_when: false
+
+- name: Restart SystemUIServer to apply changes.
+  command: killall SystemUIServer
+  changed_when: false
+  failed_when: false

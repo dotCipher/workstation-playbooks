@@ -1,0 +1,62 @@
+---
+- name: Get Fish shell path.
+  command: which fish
+  register: fish_path
+  changed_when: false
+  failed_when: false
+
+- name: Ensure Fish is in /etc/shells.
+  lineinfile:
+    path: /etc/shells
+    line: "{{ fish_path.stdout }}"
+    state: present
+  become: true
+  when: fish_path.rc == 0
+
+- name: Set Fish as default shell.
+  command: "chsh -s {{ fish_path.stdout }} {{ ansible_user_id }}"
+  become: true
+  when: fish_path.rc == 0
+  changed_when: false
+
+- name: Install Fisher plugin manager for Fish.
+  shell: |
+    fish -c '
+      if not functions -q fisher
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+        fisher install jorgebucaran/fisher
+      end
+    '
+  become: false
+  changed_when: false
+  args:
+    executable: /bin/bash
+
+- name: Install Fish plugins from fish_plugins.
+  shell: |
+    fish -c '
+      if test -f {{ ansible_env.HOME }}/.config/fish/fish_plugins
+        fisher update
+      end
+    '
+  become: false
+  changed_when: false
+  args:
+    executable: /bin/bash
+
+- name: Ensure SSH directory exists with correct permissions.
+  file:
+    path: "{{ ansible_env.HOME }}/.ssh"
+    state: directory
+    mode: '0700'
+  become: false
+
+- name: Ensure base SSH config exists (1Password agent).
+  copy:
+    content: |
+      Host *
+        IdentityAgent "~/.1password/agent.sock"
+    dest: "{{ ansible_env.HOME }}/.ssh/config"
+    mode: '0600'
+    force: false
+  become: false
