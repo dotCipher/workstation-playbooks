@@ -1,9 +1,0 @@
----
-- hosts: all
-  connection: local
-
-  vars_files:
-    - ../configs/python.yml
-
-  tasks:
-    - include_tasks: ../tasks/python.yml

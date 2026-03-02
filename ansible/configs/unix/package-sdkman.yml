@@ -1,3 +1,0 @@
----
-
-sdkman_home: "{{ ansible_user_dir }}/.sdkman"

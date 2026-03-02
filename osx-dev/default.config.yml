@@ -75,7 +75,6 @@ homebrew_installed_packages:
   - pv
   - p7zip
   - ripgrep
-  - the_silver_searcher
   - bat
   - eza
   - jq
@@ -147,7 +146,6 @@ homebrew_installed_packages:
   - imagemagick
   - poppler
   - portaudio
-  - pillow
   - testdisk
 
   # Misc dev tools

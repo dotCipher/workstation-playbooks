@@ -1,95 +1,89 @@
 # Dev Workstation Playbooks
 
-> Inspired by [geerlingguy/mac-dev-playbook](https://github.com/geerlingguy/mac-dev-playbook) and [donnemartin/dev-setup](https://github.com/donnemartin/dev-setup).
+> Inspired by [geerlingguy/mac-dev-playbook](https://github.com/geerlingguy/mac-dev-playbook).
 
-This repo contains platform-agnostic Ansible playbooks to provision all 
-aspects of my developer setup in a modular fashion. 
-
+Ansible playbooks to provision developer workstations from a clean OS install.
+Dotfiles are managed in a [separate repo](https://github.com/dotCipher/dotfiles)
+and deployed via the `geerlingguy.dotfiles` role.
 
 ## Workstations
 
-All individual workstation types are isolated in their own nested folders under this
-project root.
+| Playbook | Status | Description |
+|----------|--------|-------------|
+| `osx-dev` | Active | macOS developer workstation |
 
-The following workstations are supported:
-- `osx-dev` 
+## Quick Start (macOS)
 
+On a fresh macOS install:
 
-
-### OSX Developer Workstation (`osx-dev`)
-
-This playbook is designed to be ran on a fresh OSX install and will install all
-the necessary tools and packages to get a developer workstation up and running.
-
-
-#### Pre-requisites (manual)
-
-1. Install Apple's command line tools (`xcode-select --install` to launch the installer).
-2. [Install Homebrew](https://brew.sh/) (automated in the task, but should be done manually for the ansible install)
-
-    1. `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-
-3. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html):
-
-    1. `brew install ansible` (https://formulae.brew.sh/formula/ansible)
-
-3. Clone this repo: `git clone git@github.com:dotCipher/workstation-playbooks.git`
-4. **Sign into App Store** (since the `mas` automation playbook can't sign in automatically)
-5. Run `ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
-6. Run `ansible-playbook main.yml --ask-become-pass` inside this directory. Enter your macOS account password when prompted for the 'BECOME' password.
-
-### Usage (automatic)
-
-Bootstrap and provision via the command:
 ```bash
-bash <(curl -s -L https://git.io/vF3nW)
+# 1. Install Xcode Command Line Tools
+xcode-select --install
+
+# 2. Install Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# 3. Install Ansible
+brew install ansible
+
+# 4. Clone this repo
+git clone git@github.com:dotCipher/workstation-playbooks.git
+cd workstation-playbooks
+
+# 5. Sign into the Mac App Store (required for mas automation)
+
+# 6. Install Ansible dependencies
+ansible-galaxy install -r osx-dev/requirements.yml
+
+# 7. Run the playbook
+ansible-playbook osx-dev/main.yml --ask-become-pass
 ```
 
-### Usage (manual)
+## What It Configures
 
-Clone this repo into whatever directory you want on your machine then setup your environment:
+The `osx-dev` playbook runs these steps in order:
+
+1. **Xcode CLI Tools** - Ensures they're installed
+2. **Homebrew** - Installs ~75 formulae, 28 casks, and 5 taps
+3. **Dotfiles** - Clones and symlinks from [dotCipher/dotfiles](https://github.com/dotCipher/dotfiles)
+4. **Mac App Store** - Installs apps via `mas` (Tailscale)
+5. **Dock** - Removes default apps, sets minimal layout
+6. **Sudoers** - Passwordless sudo for admin group
+7. **macOS Defaults** - Dark mode, keyboard, Finder, Dock, screenshots, etc.
+8. **Shell Setup** - Fish as default shell, Fisher plugins, base SSH config
+9. **Node.js** - Installs default Node version via NVM
+
+## Running Individual Tags
+
 ```bash
-./scripts/bootstrap.sh
+# Only run specific sections
+ansible-playbook osx-dev/main.yml --ask-become-pass --tags homebrew
+ansible-playbook osx-dev/main.yml --ask-become-pass --tags dotfiles
+ansible-playbook osx-dev/main.yml --ask-become-pass --tags osx
+ansible-playbook osx-dev/main.yml --ask-become-pass --tags dock
+ansible-playbook osx-dev/main.yml --ask-become-pass --tags mas
+ansible-playbook osx-dev/main.yml --ask-become-pass --tags shell
+ansible-playbook osx-dev/main.yml --ask-become-pass --tags node
 ```
 
-Then provision everything with:
-```bash
-ansible-playbook -i ansible/inventory ansible/main.yml --ask-become-pass
-```
+## Overriding Defaults
 
-Or you can provision each playbook individually, see **Playbooks** below.
+Create `osx-dev/config.yml` (gitignored) to override any variable in
+`osx-dev/default.config.yml` without modifying the defaults file.
 
-### Directory Structure
+## Directory Structure
 
 ```
-ansible/        # Contains all the ansible code
-  configs/      # Configuration variables for all ansible playbooks
-  playbooks/    # Playbook bindings between configs/ tasks/ and handlers/
-  tasks/        # Sets of tasks groups by intended output
-  handlers/     # All ansible handlers for the associated playbooks/
-gradle/         # Gradle specific project generation & dev
-scripts/        # Convenience scripts for local ansible calls
+osx-dev/
+  ansible.cfg             # Ansible config
+  default.config.yml      # Default variables (packages, casks, settings)
+  inventory               # Localhost inventory
+  main.yml                # Main playbook
+  requirements.yml        # Galaxy roles and collections
+  tasks/
+    osx-defaults.yml      # macOS system preferences via osx_defaults
+    node-setup.yml        # NVM + Node.js setup
+    shell-setup.yml       # Fish shell + Fisher + SSH config
+    sudoers.yml           # Passwordless sudo config
+  roles/                  # Galaxy-installed roles (not committed)
 ```
-
-### Playbooks
-Playbooks are broken up to be ran independently of each other.
-If you want to just provision a specific aspect of your machine, 
-to run any individual playbook use the combined command:
-```bash
-ansible-playbook -i ansible/inventory <PLAYBOOK>
-```
-
-Currently the following playbooks can be used:
-
-##### OSX
- - `ansible-playbook -i ansible/inventory ansible/playbooks/osx/dock.yml`
- - `ansible-playbook -i ansible/inventory ansible/playbooks/osx/homebrew.yml`
- - `ansible-playbook -i ansible/inventory ansible/playbooks/osx/defaults.yml`
- - `ansible-playbook -i ansible/inventory ansible/playbooks/osx/mas.yml --vault-password-file ~/.ansible_vault_pass`
-
-##### WSL / Unix / Linux
- - `ansible-playbook -i ansible/inventory ansible/playbooks/packages.yml --ask-become-pass`
- - `ansible-playbook -i ansible/inventory ansible/playbooks/dotfiles.yml`
- - `ansible-playbook -i ansible/inventory ansible/playbooks/packages.yml`
- - `ansible-playbook -i ansible/inventory ansible/playbooks/fish-shell.yml --ask-become-pass`
- - `ansible-playbook -i ansible/inventory ansible/playbooks/python.yml`
