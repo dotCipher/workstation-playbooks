@@ -1,13 +1,13 @@
 ---
 - name: Ensure NVM directory exists.
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.nvm"
     state: directory
     mode: '0755'
   become: false
 
 - name: Check if default Node version is installed via NVM.
-  shell: |
+  ansible.builtin.shell: |
     export NVM_DIR="{{ ansible_env.HOME }}/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
     nvm ls {{ node_default_version }} 2>/dev/null
@@ -19,18 +19,19 @@
     executable: /bin/bash
 
 - name: Install default Node version via NVM.
-  shell: |
+  ansible.builtin.shell: |
     export NVM_DIR="{{ ansible_env.HOME }}/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
     nvm install {{ node_default_version }}
     nvm alias default {{ node_default_version }}
   when: nvm_node_check.rc != 0 or node_default_version not in (nvm_node_check.stdout | default(''))
   become: false
+  changed_when: true
   args:
     executable: /bin/bash
 
 - name: Install global npm packages.
-  shell: |
+  ansible.builtin.shell: |
     export NVM_DIR="{{ ansible_env.HOME }}/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
     if ! npm ls -g {{ item }} --depth=0 >/dev/null 2>&1; then

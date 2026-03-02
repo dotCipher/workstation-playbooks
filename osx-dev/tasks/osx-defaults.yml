@@ -190,6 +190,14 @@
     type: string
     value: PfDe
 
+- name: "Finder | Set new window target path to Desktop"
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: NewWindowTargetPath
+    type: string
+    value: "file://{{ ansible_env.HOME }}/Desktop/"
+    state: present
+
 - name: Show external hard drives on desktop.
   community.general.osx_defaults:
     domain: com.apple.finder
@@ -303,7 +311,7 @@
     value: true
 
 - name: Show ~/Library folder.
-  shell: chflags nohidden {{ ansible_env.HOME }}/Library
+  ansible.builtin.command: chflags nohidden {{ ansible_env.HOME }}/Library
   changed_when: false
   become: false
 
@@ -466,21 +474,69 @@
       automaticQuoteSubstitutionEnabled: false
   failed_when: false
 
+- name: "Typing | Disable automatic capitalization"
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: NSAutomaticCapitalizationEnabled
+    type: bool
+    value: "false"
+    state: present
+
+- name: "Typing | Disable automatic period substitution"
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: NSAutomaticPeriodSubstitutionEnabled
+    type: bool
+    value: "false"
+    state: present
+
+- name: "Dock | Don't show recent applications"
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: show-recents
+    type: bool
+    value: "false"
+    state: present
+
+- name: "Finder | Don't write .DS_Store files on USB volumes"
+  community.general.osx_defaults:
+    domain: com.apple.desktopservices
+    key: DSDontWriteUSBStores
+    type: bool
+    value: "true"
+    state: present
+
+- name: "Screenshots | Show mouse clicks in screen recordings"
+  community.general.osx_defaults:
+    domain: com.apple.screencapture
+    key: showsClicks
+    type: bool
+    value: "true"
+    state: present
+
+- name: "Window Manager | Hide desktop items on click"
+  community.general.osx_defaults:
+    domain: com.apple.WindowManager
+    key: HideDesktop
+    type: bool
+    value: "true"
+    state: present
+
 ###############################################################################
 # Restart affected applications                                               #
 ###############################################################################
 
 - name: Restart Dock to apply changes.
-  command: killall Dock
+  ansible.builtin.command: killall Dock
   changed_when: false
   failed_when: false
 
 - name: Restart Finder to apply changes.
-  command: killall Finder
+  ansible.builtin.command: killall Finder
   changed_when: false
   failed_when: false
 
 - name: Restart SystemUIServer to apply changes.
-  command: killall SystemUIServer
+  ansible.builtin.command: killall SystemUIServer
   changed_when: false
   failed_when: false

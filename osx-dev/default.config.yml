@@ -2,12 +2,13 @@
 downloads: ~/.ansible-downloads/
 
 configure_dotfiles: true
-configure_terminal: true
+
 configure_osx: true
 configure_node: true
 configure_shell: true
 configure_rust: true
 configure_go_tools: true
+configure_pipx: true
 
 # Set to 'true' to configure the Dock via dockutil.
 configure_dock: true
@@ -169,7 +170,6 @@ homebrew_installed_packages:
   - anomalyco/tap/opencode
   - mongodb-atlas-cli
   - render
-  - docker
 
 homebrew_taps:
   - hashicorp/tap
@@ -190,6 +190,7 @@ homebrew_cask_apps:
   - zed
   - visual-studio-code
   - jetbrains-toolbox
+  - cursor
 
   # Productivity & utilities
   - alfred
@@ -200,17 +201,25 @@ homebrew_cask_apps:
   - slack
   - discord
   - messenger
+  - telegram
+  - whatsapp
 
   # Development
   - docker
   - postman
   - postman-cli
   - bruno
+  - dbeaver-community
+  - mongodb-compass
+  - github
 
   # Media & creative
   - spotify
   - audacity
+  - audible
   - blackhole-2ch
+  - iina
+  - obs
 
   # Security & networking
   - nordvpn
@@ -220,10 +229,28 @@ homebrew_cask_apps:
   - font-hack-nerd-font
   - font-karla
 
+  # Productivity
+  - notion
+  - todoist
+  - linear-linear
+  - google-drive
+
   # AI tools
   - codex
+  - chatgpt
+  - claude
 
-  # System tools
+  # Crypto / finance
+  - exodus
+  - ledger-live
+
+  # Security / hardware
+  - yubico-yubikey-manager
+  - keymapp
+
+  # Virtualization & system tools
+  - utm
+  - flux
   - dockutil
   - balenaetcher
   - basictex
@@ -257,6 +284,11 @@ go_tools:
 npm_global_packages:
   - pnpm
   - newman
+
+# Python packages to install via pipx.
+pipx_packages:
+  - vastai
+  - wandb
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []

@@ -1,18 +1,20 @@
 ---
 - name: Check if Rust toolchain is installed.
-  command: rustup show active-toolchain
+  ansible.builtin.command: rustup show active-toolchain
   register: rustup_check
   changed_when: false
   failed_when: false
   become: false
 
 - name: Install default Rust toolchain via rustup.
-  command: rustup-init -y --no-modify-path
+  ansible.builtin.command: rustup-init -y --no-modify-path
   when: rustup_check.rc != 0
   become: false
+  changed_when: true
 
 - name: Install Cargo packages.
-  shell: |
+  ansible.builtin.shell: |
+    set -o pipefail
     source "$HOME/.cargo/env"
     if ! cargo install --list | grep -q "^{{ item }} "; then
       cargo install {{ item }}

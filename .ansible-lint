@@ -1,0 +1,9 @@
+---
+profile: basic
+
+exclude_paths:
+  - "**/roles/"
+  - "linux-kali/"
+
+warn_list:
+  - command-instead-of-shell

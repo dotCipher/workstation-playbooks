@@ -6,56 +6,68 @@
     - default.config.yml
 
   pre_tasks:
-    - name: Include playbook configuration.
-      include_vars: "{{ item }}"
+    - name: Include playbook configuration overrides.
+      ansible.builtin.include_vars: "{{ item }}"
       with_fileglob:
         - "{{ playbook_dir }}/config.yml"
       tags: ['always']
 
   roles:
     - role: elliotweiser.osx-command-line-tools
+      tags: ['xcode']
     - role: geerlingguy.mac.homebrew
       tags: ['homebrew']
     - role: geerlingguy.dotfiles
       when: configure_dotfiles
       tags: ['dotfiles']
     - role: geerlingguy.mac.mas
-      when: mas_installed_apps or mas_installed_app_ids
+      when: mas_installed_apps | default([]) | length > 0
       tags: ['mas']
     - role: geerlingguy.mac.dock
       when: configure_dock
       tags: ['dock']
 
   tasks:
-    - import_tasks: tasks/sudoers.yml
+    - name: Configure sudoers.
+      ansible.builtin.import_tasks: tasks/sudoers.yml
       when: configure_sudoers
       tags: ['sudoers']
 
-    - import_tasks: tasks/osx-defaults.yml
+    - name: Configure macOS defaults.
+      ansible.builtin.import_tasks: tasks/osx-defaults.yml
       when: configure_osx
       tags: ['osx']
 
-    - import_tasks: tasks/shell-setup.yml
+    - name: Configure shell environment.
+      ansible.builtin.import_tasks: tasks/shell-setup.yml
       when: configure_shell
       tags: ['shell']
 
-    - import_tasks: tasks/node-setup.yml
+    - name: Configure Node.js via NVM.
+      ansible.builtin.import_tasks: tasks/node-setup.yml
       when: configure_node
       tags: ['node']
 
-    - import_tasks: tasks/rust-setup.yml
+    - name: Configure Rust toolchain and cargo packages.
+      ansible.builtin.import_tasks: tasks/rust-setup.yml
       when: configure_rust
       tags: ['rust']
 
-    - import_tasks: tasks/go-tools.yml
+    - name: Configure Go development tools.
+      ansible.builtin.import_tasks: tasks/go-tools.yml
       when: configure_go_tools
       tags: ['go']
+
+    - name: Configure pipx packages.
+      ansible.builtin.import_tasks: tasks/pipx-setup.yml
+      when: configure_pipx
+      tags: ['pipx']
 
     - name: Run post-provision task files in a block.
       tags: ['post']
       block:
         - name: Run configured post-provision ansible task files.
-          include_tasks: "{{ outer_item }}"
+          ansible.builtin.include_tasks: "{{ outer_item }}"
           loop_control:
             loop_var: outer_item
           with_fileglob: "{{ post_provision_tasks | default(omit) }}"

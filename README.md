@@ -28,42 +28,51 @@ brew install ansible
 
 # 4. Clone this repo
 git clone git@github.com:dotCipher/workstation-playbooks.git
-cd workstation-playbooks
+cd workstation-playbooks/osx-dev
 
 # 5. Sign into the Mac App Store (required for mas automation)
 
 # 6. Install Ansible dependencies
-ansible-galaxy install -r osx-dev/requirements.yml
+ansible-galaxy install -r requirements.yml
 
 # 7. Run the playbook
-ansible-playbook osx-dev/main.yml --ask-become-pass
+ansible-playbook main.yml --ask-become-pass
 ```
+
+> **Note:** Run from within the `osx-dev/` directory so `ansible.cfg` and
+> `inventory` are picked up automatically.
 
 ## What It Configures
 
 The `osx-dev` playbook runs these steps in order:
 
 1. **Xcode CLI Tools** - Ensures they're installed
-2. **Homebrew** - Installs ~75 formulae, 28 casks, and 5 taps
+2. **Homebrew** - Installs ~80 formulae, ~45 casks, and 6 taps
 3. **Dotfiles** - Clones and symlinks from [dotCipher/dotfiles](https://github.com/dotCipher/dotfiles)
 4. **Mac App Store** - Installs apps via `mas` (Tailscale)
-5. **Dock** - Removes default apps, sets minimal layout
+5. **Dock** - Removes default apps, sets minimal layout (System Settings only)
 6. **Sudoers** - Passwordless sudo for admin group
 7. **macOS Defaults** - Dark mode, keyboard, Finder, Dock, screenshots, etc.
 8. **Shell Setup** - Fish as default shell, Fisher plugins, base SSH config
-9. **Node.js** - Installs default Node version via NVM
+9. **Node.js** - Installs Node via NVM, plus global npm packages (pnpm, newman)
+10. **Rust** - Installs toolchain via rustup, plus cargo packages
+11. **Go Tools** - Installs dev tools via `go install` (gopls, staticcheck, etc.)
+12. **pipx** - Installs Python CLI tools (vastai, wandb)
 
 ## Running Individual Tags
 
 ```bash
-# Only run specific sections
-ansible-playbook osx-dev/main.yml --ask-become-pass --tags homebrew
-ansible-playbook osx-dev/main.yml --ask-become-pass --tags dotfiles
-ansible-playbook osx-dev/main.yml --ask-become-pass --tags osx
-ansible-playbook osx-dev/main.yml --ask-become-pass --tags dock
-ansible-playbook osx-dev/main.yml --ask-become-pass --tags mas
-ansible-playbook osx-dev/main.yml --ask-become-pass --tags shell
-ansible-playbook osx-dev/main.yml --ask-become-pass --tags node
+ansible-playbook main.yml --ask-become-pass --tags homebrew
+ansible-playbook main.yml --ask-become-pass --tags dotfiles
+ansible-playbook main.yml --ask-become-pass --tags osx
+ansible-playbook main.yml --ask-become-pass --tags dock
+ansible-playbook main.yml --ask-become-pass --tags mas
+ansible-playbook main.yml --ask-become-pass --tags shell
+ansible-playbook main.yml --ask-become-pass --tags node
+ansible-playbook main.yml --ask-become-pass --tags rust
+ansible-playbook main.yml --ask-become-pass --tags go
+ansible-playbook main.yml --ask-become-pass --tags pipx
+ansible-playbook main.yml --ask-become-pass --tags sudoers
 ```
 
 ## Overriding Defaults
@@ -79,11 +88,14 @@ osx-dev/
   default.config.yml      # Default variables (packages, casks, settings)
   inventory               # Localhost inventory
   main.yml                # Main playbook
-  requirements.yml        # Galaxy roles and collections
+  requirements.yml        # Galaxy roles and collections (pinned versions)
   tasks/
+    go-tools.yml          # Go dev tools via go install
+    node-setup.yml        # NVM + Node.js + global npm packages
     osx-defaults.yml      # macOS system preferences via osx_defaults
-    node-setup.yml        # NVM + Node.js setup
+    pipx-setup.yml        # Python CLI tools via pipx
+    rust-setup.yml        # Rust toolchain + cargo packages
     shell-setup.yml       # Fish shell + Fisher + SSH config
     sudoers.yml           # Passwordless sudo config
-  roles/                  # Galaxy-installed roles (not committed)
+  roles/                  # Galaxy-installed roles (gitignored, install via requirements.yml)
 ```
