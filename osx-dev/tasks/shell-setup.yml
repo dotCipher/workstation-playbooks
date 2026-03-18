@@ -21,7 +21,7 @@
   become: false
 
 - name: Set Fish as default shell.
-  ansible.builtin.command: "chsh -s {{ fish_path.stdout }} {{ ansible_user_id }}"
+  ansible.builtin.command: "dscl . -create /Users/{{ ansible_user_id }} UserShell {{ fish_path.stdout }}"
   become: true
   when:
     - fish_path.rc == 0
@@ -46,11 +46,12 @@
   ansible.builtin.shell: |
     {{ fish_path.stdout }} -c '
       if test -f {{ ansible_env.HOME }}/.config/fish/fish_plugins
-        fisher update
+        fisher update 2>/dev/null; or true
       end
     '
   become: false
   changed_when: false
+  failed_when: false
   when: fish_path.rc == 0
   args:
     executable: /bin/bash
