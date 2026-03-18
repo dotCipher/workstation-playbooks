@@ -33,10 +33,11 @@ dockitems_remove:
   - Keynote
   - Numbers
   - Pages
-  - iPhone Mirroring
+  - "iPhone Mirroring"
+  - "System Settings"
 dockitems_persist:
-  - name: "System Settings"
-    path: "/System/Applications/System Settings.app/"
+  - name: "Finder"
+    path: "/System/Library/CoreServices/Finder.app/"
     pos: 1
 
 configure_sudoers: true

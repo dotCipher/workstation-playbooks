@@ -1,16 +1,24 @@
 ---
 - name: Check if Rust toolchain is installed.
-  ansible.builtin.command: rustup show active-toolchain
+  ansible.builtin.shell: |
+    export PATH="/opt/homebrew/opt/rustup/bin:$HOME/.cargo/bin:$PATH"
+    rustup show active-toolchain
   register: rustup_check
   changed_when: false
   failed_when: false
   become: false
+  args:
+    executable: /bin/bash
 
 - name: Install default Rust toolchain via rustup.
-  ansible.builtin.command: rustup-init -y --no-modify-path
+  ansible.builtin.shell: |
+    export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+    rustup-init -y --no-modify-path
   when: rustup_check.rc != 0
   become: false
   changed_when: true
+  args:
+    executable: /bin/bash
 
 - name: Install Cargo packages.
   ansible.builtin.shell: |

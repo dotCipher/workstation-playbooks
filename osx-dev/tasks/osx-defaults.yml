@@ -84,7 +84,7 @@
 # Trackpad, keyboard, and input                                               #
 ###############################################################################
 
-- name: Disable natural scroll direction.
+- name: Disable natural scroll direction (invert scroll - traditional direction).
   community.general.osx_defaults:
     domain: NSGlobalDomain
     key: com.apple.swipescrolldirection
@@ -316,6 +316,24 @@
   become: false
 
 ###############################################################################
+# Spotlight (disable shortcuts so Alfred can use Cmd+Space)                   #
+###############################################################################
+
+- name: Disable Spotlight search shortcut (key 64).
+  ansible.builtin.command: >
+    defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys
+    -dict-add 64 '<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>65535</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>'
+  become: false
+  changed_when: true
+
+- name: Disable Spotlight window shortcut (key 65).
+  ansible.builtin.command: >
+    defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys
+    -dict-add 65 '<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>65535</integer><integer>49</integer><integer>1572864</integer></array><key>type</key><string>standard</string></dict></dict>'
+  become: false
+  changed_when: true
+
+###############################################################################
 # Dock                                                                        #
 ###############################################################################
 
@@ -326,12 +344,26 @@
     type: int
     value: 70
 
+- name: Set Dock position to bottom.
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: orientation
+    type: string
+    value: bottom
+
 - name: Enable Dock auto-hide.
   community.general.osx_defaults:
     domain: com.apple.dock
     key: autohide
     type: bool
     value: true
+
+- name: Speed up Dock auto-hide animation.
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: autohide-time-modifier
+    type: float
+    value: 0.15
 
 - name: Speed up Mission Control animations.
   community.general.osx_defaults:

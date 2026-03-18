@@ -30,7 +30,7 @@
 - name: Install Fisher plugin manager for Fish.
   ansible.builtin.shell: |
     set -o pipefail
-    fish -c '
+    {{ fish_path.stdout }} -c '
       if not functions -q fisher
         curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
         fisher install jorgebucaran/fisher
@@ -38,18 +38,20 @@
     '
   become: false
   changed_when: false
+  when: fish_path.rc == 0
   args:
     executable: /bin/bash
 
 - name: Install Fish plugins from fish_plugins.
   ansible.builtin.shell: |
-    fish -c '
+    {{ fish_path.stdout }} -c '
       if test -f {{ ansible_env.HOME }}/.config/fish/fish_plugins
         fisher update
       end
     '
   become: false
   changed_when: false
+  when: fish_path.rc == 0
   args:
     executable: /bin/bash
 
