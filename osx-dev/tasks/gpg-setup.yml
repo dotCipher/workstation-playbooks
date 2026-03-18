@@ -1,0 +1,106 @@
+---
+- name: Fix GPG home directory permissions.
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.gnupg"
+    state: directory
+    mode: '0700'
+  become: false
+
+- name: Check if GPG key already exists for configured email.
+  ansible.builtin.shell: |
+    /opt/homebrew/bin/gpg --list-secret-keys --keyid-format=long "{{ gpg_user_email }}" 2>/dev/null | grep -c "^sec"
+  register: gpg_key_check
+  changed_when: false
+  failed_when: false
+  become: false
+  args:
+    executable: /bin/bash
+
+- name: Generate GPG key parameters file.
+  ansible.builtin.copy:
+    dest: /tmp/gpg-key-params
+    mode: '0600'
+    content: |
+      %no-protection
+      Key-Type: eddsa
+      Key-Curve: {{ gpg_key_curve }}
+      Key-Usage: sign
+      Subkey-Type: ecdh
+      Subkey-Curve: cv25519
+      Subkey-Usage: encrypt
+      Name-Real: {{ gpg_user_name }}
+      Name-Email: {{ gpg_user_email }}
+      Expire-Date: {{ gpg_key_expire }}
+      {% if gpg_key_passphrase != "" %}
+      Passphrase: {{ gpg_key_passphrase }}
+      {% endif %}
+      %commit
+  when: gpg_key_check.stdout | int == 0
+  become: false
+
+- name: Generate GPG key.
+  ansible.builtin.shell: |
+    /opt/homebrew/bin/gpg --batch --gen-key /tmp/gpg-key-params 2>&1
+    rm -f /tmp/gpg-key-params
+  when: gpg_key_check.stdout | int == 0
+  become: false
+  changed_when: true
+  args:
+    executable: /bin/bash
+
+- name: Get GPG key ID for signing.
+  ansible.builtin.shell: |
+    /opt/homebrew/bin/gpg --list-secret-keys --keyid-format=long "{{ gpg_user_email }}" 2>/dev/null \
+      | grep "^sec" | head -1 | awk '{print $2}' | cut -d'/' -f2
+  register: gpg_key_id
+  changed_when: false
+  failed_when: gpg_key_id.stdout == ""
+  become: false
+  args:
+    executable: /bin/bash
+
+- name: Configure git to sign commits with GPG key.
+  community.general.git_config:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    scope: global
+  loop:
+    - { name: "user.signingkey", value: "{{ gpg_key_id.stdout }}" }
+    - { name: "commit.gpgsign", value: "true" }
+    - { name: "gpg.program", value: "/opt/homebrew/bin/gpg" }
+  become: false
+
+- name: Configure pinentry-mac for GPG agent (macOS keychain prompts).
+  ansible.builtin.copy:
+    dest: "{{ ansible_env.HOME }}/.gnupg/gpg-agent.conf"
+    mode: '0600'
+    force: false
+    content: |
+      pinentry-program /opt/homebrew/bin/pinentry-mac
+  become: false
+
+- name: Reload GPG agent.
+  ansible.builtin.shell: |
+    /opt/homebrew/bin/gpgconf --kill gpg-agent
+    /opt/homebrew/bin/gpg-agent --daemon 2>/dev/null || true
+  changed_when: false
+  become: false
+  args:
+    executable: /bin/bash
+
+- name: Display GPG public key for adding to GitHub/GitLab.
+  ansible.builtin.shell: |
+    /opt/homebrew/bin/gpg --armor --export "{{ gpg_user_email }}"
+  register: gpg_public_key
+  changed_when: false
+  become: false
+  args:
+    executable: /bin/bash
+
+- name: Show GPG public key.
+  ansible.builtin.debug:
+    msg: |
+      GPG key ID: {{ gpg_key_id.stdout }}
+      Add the following public key to GitHub (Settings → SSH and GPG keys → New GPG key):
+
+      {{ gpg_public_key.stdout }}

@@ -63,6 +63,11 @@
       when: configure_pipx
       tags: ['pipx']
 
+    - name: Configure GPG signing key.
+      ansible.builtin.import_tasks: tasks/gpg-setup.yml
+      when: configure_gpg
+      tags: ['gpg']
+
     - name: Run post-provision task files in a block.
       tags: ['post']
       block:

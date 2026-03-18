@@ -9,6 +9,18 @@ configure_shell: true
 configure_rust: true
 configure_go_tools: true
 configure_pipx: true
+configure_gpg: true
+
+# GPG signing key configuration.
+# Key type uses ed25519 (modern, fast, secure).
+# Set gpg_key_passphrase to "" for no passphrase (silent signing),
+# or override in config.yml to set one securely.
+gpg_user_name: "Cody Moore"
+gpg_user_email: "cody.moore101@gmail.com"
+gpg_key_type: eddsa
+gpg_key_curve: ed25519
+gpg_key_expire: 2y
+gpg_key_passphrase: ""
 
 # Set to 'true' to configure the Dock via dockutil.
 configure_dock: true
