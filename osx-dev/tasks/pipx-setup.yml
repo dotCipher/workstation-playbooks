@@ -1,6 +1,8 @@
 ---
 - name: Install pipx packages.
   ansible.builtin.command: "pipx install {{ item }}"
+  environment:
+    PATH: "/opt/homebrew/bin:{{ ansible_env.PATH }}"
   loop: "{{ pipx_packages | default([]) }}"
   become: false
   register: pipx_result

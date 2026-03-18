@@ -10,7 +10,7 @@
   ansible.builtin.command: "go install {{ item }}"
   environment:
     GOPATH: "{{ ansible_env.HOME }}/go"
-    PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/go/bin"
+    PATH: "/opt/homebrew/bin:{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/go/bin"
   loop: "{{ go_tools | default([]) }}"
   become: false
   changed_when: false

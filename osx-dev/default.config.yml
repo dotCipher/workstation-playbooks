@@ -269,7 +269,7 @@ cargo_packages:
 go_tools:
   - golang.org/x/tools/gopls@latest
   - mvdan.cc/gofumpt@latest
-  - dario.cat/gci@latest
+  - github.com/daixiang0/gci@latest
   - honnef.co/go/tools/cmd/staticcheck@latest
   - golang.org/x/vuln/cmd/govulncheck@latest
   - github.com/go-delve/delve/cmd/dlv@latest
