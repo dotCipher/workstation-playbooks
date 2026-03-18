@@ -103,7 +103,7 @@
     domain: NSGlobalDomain
     key: InitialKeyRepeat
     type: int
-    value: 20
+    value: 15
 
 - name: Set blazingly fast key repeat rate.
   community.general.osx_defaults:

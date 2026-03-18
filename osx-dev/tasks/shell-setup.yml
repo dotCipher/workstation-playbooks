@@ -55,6 +55,26 @@
   args:
     executable: /bin/bash
 
+- name: Install uv (Python package manager).
+  ansible.builtin.shell: |
+    set -o pipefail
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+  args:
+    executable: /bin/bash
+    creates: "{{ ansible_env.HOME }}/.local/bin/uv"
+  become: false
+
+- name: Initialize atuin database (first-run setup).
+  ansible.builtin.shell: |
+    set -o pipefail
+    {{ ansible_env.HOME }}/.cargo/bin/atuin 2>/dev/null || \
+    /opt/homebrew/bin/atuin init bash >/dev/null 2>&1 || true
+  args:
+    executable: /bin/bash
+    creates: "{{ ansible_env.HOME }}/.local/share/atuin/history.db"
+  become: false
+  failed_when: false
+
 - name: Ensure SSH directory exists with correct permissions.
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.ssh"

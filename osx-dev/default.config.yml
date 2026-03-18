@@ -103,10 +103,16 @@ homebrew_installed_packages:
   - httpie
   - doctl
 
-  # Shell
+  # Shell & prompt
   - fish
   - tmux
   - zoxide
+  - starship
+  - atuin
+  - fzf
+  - lazygit
+  - git-delta
+  - fd
 
   # Languages & runtimes
   - go
