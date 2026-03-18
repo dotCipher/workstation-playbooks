@@ -141,7 +141,6 @@ homebrew_installed_packages:
   - act
 
   # DevOps / Infrastructure
-  - hashicorp/tap/terraform
   - terragrunt
   - warrensbox/tap/tfswitch
   - jsonnet
