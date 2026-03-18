@@ -208,6 +208,8 @@ homebrew_cask_apps:
   - messenger
   - telegram
   - whatsapp
+  - zoom
+  - granola
 
   # Development
   - docker
