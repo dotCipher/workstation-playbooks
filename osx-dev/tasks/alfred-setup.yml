@@ -1,0 +1,33 @@
+---
+- name: Ensure Alfred themes directory exists.
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/Library/Application Support/Alfred/Alfred.alfredpreferences/themes"
+    state: directory
+    mode: '0755'
+  become: false
+
+- name: Download Catppuccin Alfred themes.
+  ansible.builtin.get_url:
+    url: "{{ item.url }}"
+    dest: "{{ ansible_env.HOME }}/Library/Application Support/Alfred/Alfred.alfredpreferences/themes/{{ item.name }}"
+    mode: '0644'
+    force: false
+  loop:
+    - name: "Catppuccin-modern-mocha.alfredappearance"
+      url: "https://raw.githubusercontent.com/catppuccin/alfred/main/dist/Catppuccin-modern-mocha.alfredappearance"
+    - name: "Catppuccin-modern-macchiato.alfredappearance"
+      url: "https://raw.githubusercontent.com/catppuccin/alfred/main/dist/Catppuccin-modern-macchiato.alfredappearance"
+    - name: "Catppuccin-modern-frappe.alfredappearance"
+      url: "https://raw.githubusercontent.com/catppuccin/alfred/main/dist/Catppuccin-modern-frappe.alfredappearance"
+    - name: "Catppuccin-modern-latte.alfredappearance"
+      url: "https://raw.githubusercontent.com/catppuccin/alfred/main/dist/Catppuccin-modern-latte.alfredappearance"
+  become: false
+
+- name: Import Catppuccin Modern Mocha theme into Alfred.
+  ansible.builtin.shell: |
+    open "{{ ansible_env.HOME }}/Library/Application Support/Alfred/Alfred.alfredpreferences/themes/Catppuccin-modern-mocha.alfredappearance"
+    sleep 2
+  become: false
+  changed_when: false
+  args:
+    executable: /bin/bash

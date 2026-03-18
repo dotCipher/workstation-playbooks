@@ -68,6 +68,11 @@
       when: configure_gpg
       tags: ['gpg']
 
+    - name: Configure Alfred.
+      ansible.builtin.import_tasks: tasks/alfred-setup.yml
+      when: configure_alfred
+      tags: ['alfred']
+
     - name: Run post-provision task files in a block.
       tags: ['post']
       block:

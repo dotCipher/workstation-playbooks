@@ -10,6 +10,11 @@ configure_rust: true
 configure_go_tools: true
 configure_pipx: true
 configure_gpg: true
+configure_alfred: true
+
+# Alfred theme configuration.
+# All 4 Catppuccin Modern flavours are downloaded; mocha is auto-imported.
+alfred_catppuccin_flavor: mocha
 
 # GPG signing key configuration.
 # Key type uses ed25519 (modern, fast, secure).
