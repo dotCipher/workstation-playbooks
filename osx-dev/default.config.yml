@@ -159,6 +159,7 @@ homebrew_installed_packages:
   - testdisk
 
   # Misc dev tools
+  - dockutil
   - mike-engel/jwt-cli/jwt-cli
   - go-task
   - git-filter-repo
@@ -188,8 +189,6 @@ homebrew_cask_apps:
   # Terminals & editors
   - alacritty
   - zed
-  - visual-studio-code
-  - jetbrains-toolbox
 
   # Productivity & utilities
   - alfred
@@ -215,7 +214,6 @@ homebrew_cask_apps:
   # Media & creative
   - spotify
   - audacity
-  - audible
   - blackhole-2ch
   - obs
 
@@ -239,17 +237,15 @@ homebrew_cask_apps:
   - claude
 
   # Crypto / finance
-  - exodus
   - ledger-live
 
   # Security / hardware
-  - yubico-yubikey-manager
+  - yubico-authenticator
   - keymapp
 
   # Virtualization & system tools
   - utm
   - flux
-  - dockutil
   - balenaetcher
   - basictex
   - macfuse
