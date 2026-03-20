@@ -235,6 +235,7 @@ homebrew_cask_apps:
   - dbeaver-community
   - mongodb-compass
   - github
+  - gcloud-cli
 
   # Media & creative
   - spotify
