@@ -43,6 +43,11 @@
       when: configure_shell
       tags: ['shell']
 
+    - name: Configure tmux plugins (TPM, resurrect, continuum).
+      ansible.builtin.import_tasks: tasks/tmux-setup.yml
+      when: configure_tmux
+      tags: ['tmux']
+
     - name: Configure Node.js via NVM.
       ansible.builtin.import_tasks: tasks/node-setup.yml
       when: configure_node
