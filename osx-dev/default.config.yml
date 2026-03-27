@@ -246,6 +246,7 @@ homebrew_cask_apps:
 
   # Security & networking
   - nordvpn
+  - tunnelblick
   - keeper-password-manager
 
   # Fonts
